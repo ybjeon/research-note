@@ -1,3 +1,3 @@
 # Security
 
-## Table of contents
+- [Threat modeling](threat_modeling.md)
