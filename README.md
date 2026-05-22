@@ -4,7 +4,7 @@
 - LLM
 - AI Agent Security
 
-## Security
+## [Security](security/)
 - Terms
 - Threat modeling
 - Access control
@@ -14,10 +14,6 @@
 - Authorization (인가)
 - Access control (권한 제어)
 
-## LLM
-
-### todo list
-- 
 
 ## AI Agent Security
 - toy project : [ybjeon/ai-agent-security-toyproject](https://github.com/ybjeon/ai-agent-security-toyproject)
