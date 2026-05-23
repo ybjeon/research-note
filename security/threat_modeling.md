@@ -110,6 +110,14 @@ a systematic process for identifying security threats, prioritizing them, and es
 | **High Impact** | 🟡 Medium | 🔴 High — Act Immediately |
 | **Low Impact** | 🟢 Low | 🟡 Medium |
 
+> Q. Criteria for choosing evaluation metrics?  
+> A. Choose based on **purpose and context**:
+> - **DREAD**: Best for internal, team-level threat modeling during early design phases. Quick to apply but subjective — scores depend on the assessor's judgment.
+> - **CVSS**: Preferred when standardization matters — compliance reporting, vendor communication, or external audits. More objective and widely recognized, but requires more effort to score accurately.
+> - **Priority Matrix (Likelihood × Impact)**: Ideal for executive communication or rapid triage. Provides intuitive visual prioritization without numeric precision.
+>
+> In practice: use **DREAD or Priority Matrix** for fast internal prioritization, and **CVSS** when formal documentation or cross-organizational comparability is required.
+
 ---
 
 
