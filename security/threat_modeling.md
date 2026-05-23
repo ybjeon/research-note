@@ -83,6 +83,19 @@ a systematic process for identifying security threats, prioritizing them, and es
 - Reference past CVEs and attack patterns — CAPEC, ATT&CK 
 - Brainstorming or expert review
 
+### Common Threats
+
+- **Malware (악성코드)**: Malicious software such as viruses, worms, ransomware, and spyware that can disrupt operations, steal data, or encrypt systems for extortion.
+- **Phishing and Social Engineering (피싱 및 사회공학)**: Deceptive messages or interactions that trick users into revealing credentials, sensitive data, or approving harmful actions.
+- **Credential Attacks (자격증명 공격)**: Password spraying, brute force, and credential stuffing using leaked or weak passwords.
+- **Insider Threat (내부자 위협)**: Intentional abuse or accidental misuse by employees, contractors, or partners with legitimate access.
+- **Web Application Attacks (웹 애플리케이션 공격)**: Exploits such as SQL injection, XSS, and CSRF that target application logic and input handling.
+- **Denial of Service (서비스 거부 공격, DoS/DDoS)**: Flooding services or exhausting resources to reduce availability.
+- **Man-in-the-Middle (중간자 공격, MitM)**: Intercepting or altering communication between parties when transport security is weak or misconfigured.
+- **Supply Chain Attack (공급망 공격)**: Compromise through third-party software, libraries, update channels, or service providers.
+- **Misconfiguration and Unpatched Systems (오구성 및 미패치 시스템)**: Security gaps caused by insecure defaults, exposed services, or delayed vulnerability patching.
+
+
 ---
 
 ## Step 4: Threat Assessment & Prioritization (위협 평가 및 우선순위)
