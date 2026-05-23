@@ -3,8 +3,11 @@
 - [Overview](overview.md) (todo: offer my own insights on security topics)
 - [Basic Security](basic_security.md)
 - [Access Control](access_control.md) (todo)
-- [Threat modeling](threat_modeling.md)
+- [Threat Modeling](threat_modeling.md)
 
+## todos
+- Access control
+- Threat modeling real-world examples
 
 ## References
 

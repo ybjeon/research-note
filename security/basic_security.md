@@ -1,4 +1,8 @@
 # Basic Security
+> **main purpose of this page**
+> - offer all the basic knowledge and principles that are necessary to understand security topics
+> - include all terms and concepts related to security
+
 
 ## Security goals (보안 목표)
 
