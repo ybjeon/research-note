@@ -44,3 +44,54 @@ $$
 - **Transfer (전가)**: Shift financial impact (e.g., cyber insurance, contractual arrangements).
 - **Avoid (회피)**: Stop the risky activity.
 - **Accept (수용)**: Keep the risk within approved tolerance.
+
+## Access Control (접근 통제)
+
+### Terms
+- **Subject (주체)**: The active entity requesting access, such as a user, process, service account, or device.
+- **Object (객체)**: The resource being protected, such as a file, database row, API, secret, or network segment.
+- **Action (행위)**: The requested operation on the object, such as read, write, delete, execute, or approve.
+- **Authentication (인증)**: The process of verifying the identity of a subject before access is evaluated.
+- **Authorization (권한부여)**: The process of determining whether an authenticated subject can perform a specific action on an object.
+- **Policy (정책)**: The rule set that defines who can do what under which conditions.
+- **Permission (권한)**: An allowed action on a specific object or object group.
+- **Role (역할)**: A collection of permissions assigned based on job function.
+- **Privilege (특권)**: A higher-risk permission set, often including administrative or sensitive operations.
+- **Context (맥락)**: Additional signals used in a decision, such as time, location, device posture, session risk, or data sensitivity.
+
+### Decision view
+- Access control answers the question: **"Can this subject perform this action on this object under the current context?"**
+- A decision is usually expressed as **allow**, **deny**, or **allow with conditions**.
+- Strong access control depends on both correct identity verification and correct policy evaluation.
+- In modern systems, the same access decision may be enforced at multiple layers: application, API gateway, database, and infrastructure.
+
+
+### Authentication (인증)
+- **Goal**: Confirm that a subject is who it claims to be.
+- **Typical methods**:
+	- **Something you know**: Password, PIN.
+	- **Something you have**: OTP token, authenticator app, security key.
+	- **Something you are**: Fingerprint, face, other biometrics.
+- **MFA (다중요소인증)** combines two or more factors to reduce account takeover risk.
+- **Common risks**: Phishing, credential stuffing, weak password reuse, session theft.
+- **Good practices**: Strong password policy, phishing-resistant MFA (e.g., FIDO2/WebAuthn), secure session handling, and anomaly detection.
+
+### Authorization (권한부여)
+- **Goal**: Decide what an authenticated subject is allowed to do.
+- **Decision inputs**: Identity, role/group, resource sensitivity, action type, and runtime context.
+- **Common models**:
+	- **RBAC (역할 기반 접근통제)**: Permissions are assigned to roles, then roles to users.
+	- **ABAC (속성 기반 접근통제)**: Policy evaluates attributes (user/resource/environment).
+	- **ReBAC (관계 기반 접근통제)**: Decisions depend on graph relationships between entities.
+- **Common risks**: Over-privileged accounts, missing object-level checks (IDOR), policy drift, and privilege escalation.
+- **Good practices**: Least privilege, default deny, explicit policy testing, and periodic access reviews.
+
+### Related concepts (기타)
+- **Accounting/Auditing (계정추적/감사)**: Record who did what, when, where, and with what result for forensics and compliance.
+- **Least Privilege (최소 권한)**: Grant only the minimum permissions required for the task.
+- **Separation of Duties (직무 분리)**: Split sensitive workflows across multiple people or systems to reduce fraud and mistake risk.
+- **Just-In-Time Access (적시 권한 부여)**: Grant elevated permissions only for a limited time window.
+- **Policy Enforcement Point (PEP) / Policy Decision Point (PDP)**:
+	- **PEP** intercepts a request and enforces the decision.
+	- **PDP** evaluates policy and returns allow/deny (or conditional) decisions.
+
