@@ -54,11 +54,14 @@ a systematic process for identifying security threats, prioritizing them, and es
 ### Data Flow Diagram (DFD) Construction (DFD 작성)
 - Visualize system components and data flows
 - Key elements:
-  - **Process**: Component that processes data
-  - **Data Store**: DB, files, cache
-  - **External Entity**: Users, external systems
-  - **Data Flow**: Data movement path between components
-  - **Trust Boundary**: Boundary where the security level changes 
+  - **Process**: Component that processes data (calculations, transformations)
+  - **Data Store**: DB, files, cache, memory storage
+  - **External Entity**: Users, external systems, third-party services
+  - **Data Flow**: Data movement path between components (labeled with protocol/method)
+  - **Trust Boundary**: Boundary where the security level changes — represents a line between trusted and untrusted zones (e.g., between user input and internal system, between application and external API, between user application and database). Any data crossing this boundary requires validation and security checks. 
+
+> **Q.** Why do we define Trust Boundaries?  
+> **A.** Defining trust boundaries helps identify points where security controls are needed to protect sensitive data and prevent unauthorized access.
 
 ---
 
