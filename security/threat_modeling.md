@@ -136,6 +136,21 @@ Map findings to controls and compliance requirements (for example, NIST and GDPR
 
 ## Step 4: Threat Assessment & Prioritization (위협 평가 및 우선순위)
 
+### Overview
+
+| | **DREAD** | **CVSS** | **Priority Matrix** |
+|---|---|---|---|
+| **Purpose** | Rank threats by estimated risk | Score vulnerability severity | Triage threats by likelihood × impact |
+| **Output** | Numeric score 1–10 per threat | Numeric score 0.0–10.0 per vulnerability | Quadrant label (High / Medium / Low) |
+| **Input** | Subjective judgment across 5 criteria | Structured technical metrics (AV, AC, PR, UI, Scope, CIA) | Estimated likelihood and business impact |
+| **Objectivity** | Low — assessor-dependent | High — standardized formula | Medium — depends on estimation quality |
+| **Effort** | Low | Medium–High | Low |
+| **Scope** | Threat-level (design/architecture) | Vulnerability-level (CVE, patch advisory) | Threat or risk-level |
+| **Audience** | Internal dev/security team | Vendors, auditors, compliance teams | Executives, rapid triage |
+| **Standardization** | None (internal use) | Industry standard (FIRST) | None (organization-defined) |
+| **Limitation** | Subjective; inconsistent across teams | Measures severity, not risk; ignores business context | No numeric precision; coarse granularity |
+| **Best used when** | Early design phase, fast internal scoring | Compliance reporting, cross-org comparison | Executive briefing, quick prioritization |
+
 ### DREAD Score Model — scored 1~10
 
 | Item | Description|
