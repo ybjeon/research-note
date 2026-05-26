@@ -151,7 +151,7 @@ Map findings to controls and compliance requirements (for example, NIST and GDPR
 | **Limitation** | Subjective; inconsistent across teams | Measures severity, not risk; ignores business context | No numeric precision; coarse granularity |
 | **Best used when** | Early design phase, fast internal scoring | Compliance reporting, cross-org comparison | Executive briefing, quick prioritization |
 
-### DREAD Score Model — scored 1~10
+### DREAD
 
 | Item | Description|
 |------|------|
@@ -161,11 +161,51 @@ Map findings to controls and compliance requirements (for example, NIST and GDPR
 | **A**ffected Users | Scope of users impacted (영향 받는 사용자 범위) |
 | **D**iscoverability | Likelihood of discovering the vulnerability (취약점 발견 가능성) |
 
-**Risk Score (위험도) = (D + R + E + A + D) / 5**
+*each component scored 1~10
+
+**Risk Score (위험도) = (D + R + E + A + D) / 5**  
 
 ### CVSS (Common Vulnerability Scoring System)
 - Industry-standard vulnerability severity scoring system 
-- Composed of Base Score, Temporal Score, and Environmental Score
+- Maintained by FIRST (Forum of Incident Response and Security Teams); current versions are **v3.1** and **v4.0**
+- Score range: **0.0 – 10.0** → mapped to severity levels
+
+| Score | Severity |
+|-------|----------|
+| 0.0 | None |
+| 0.1 – 3.9 | Low |
+| 4.0 – 6.9 | Medium |
+| 7.0 – 8.9 | High |
+| 9.0 – 10.0 | Critical |
+
+#### Score Components
+
+**Base Score** — intrinsic characteristics of the vulnerability, independent of time or environment
+
+| Metric Group | Metrics |
+|---|---|
+| Exploitability (공격 용이성) | Attack Vector (AV), Attack Complexity (AC), Privileges Required (PR), User Interaction (UI) |
+| Scope (범위) | Scope (S) — whether the vulnerability impacts components beyond its authorization boundary |
+| Impact (영향) | Confidentiality (C), Integrity (I), Availability (A) — each rated None / Low / High |
+
+**Temporal Score** — adjusts Base Score based on current exploit and patch state
+
+| Metric | Description |
+|---|---|
+| Exploit Code Maturity (E) | Whether a working exploit is publicly available (공개 익스플로잇 존재 여부) |
+| Remediation Level (RL) | Whether an official patch or workaround exists (공식 패치 또는 완화책 여부) |
+| Report Confidence (RC) | Confidence in the vulnerability report's accuracy (보고 신뢰도) |
+
+**Environmental Score** — tailors the score to a specific deployment context
+
+- Modifies Base metrics to reflect the actual environment (e.g., a confidentiality-focused system raises the Confidentiality impact weight)
+- Defined by the organization consuming the score, not the vendor
+
+#### Usage Notes
+- CVSS measures **severity**, not **risk** — it does not account for threat likelihood or business context
+- Use CVSS Base Score for vendor advisories and cross-organization comparison
+- Use Environmental Score for internal prioritization aligned with your asset sensitivity
+- Combine with threat intelligence (e.g., EPSS — Exploit Prediction Scoring System) for a more complete risk picture
 
 ### Priority Matrix (우선순위 매트릭스)
 
@@ -267,6 +307,7 @@ Choose one of the following four response strategies for each threat:
 
 ## References & Frameworks
 - [OWASP Threat Modeling](https://owasp.org/www-community/Threat_Modeling)
+- [OWASP Threat Modeling Process](https://owasp.org/www-community/Threat_Modeling_Process)
 - [Microsoft STRIDE](https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats)
 - [MITRE ATT&CK](https://attack.mitre.org/)
 - [CAPEC (Common Attack Pattern Enumeration and Classification)](https://capec.mitre.org/)
