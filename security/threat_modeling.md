@@ -63,6 +63,9 @@ a systematic process for identifying security threats, prioritizing them, and es
 > **Q.** Why do we define Trust Boundaries?  
 > **A.** Defining trust boundaries helps identify points where security controls are needed to protect sensitive data and prevent unauthorized access.
 
+> **Q.** Which element is considered as an asset in DFD?  
+> **A.** An asset is anything whose compromise, loss, or disruption causes business, technical, or legal harm. All DFD elements can be assets — a Process (e.g., authentication logic), a Data Store (e.g., a database), an External Entity (e.g., a user account), and a Data Flow (e.g., a token in transit) are all candidates. Assets also extend beyond the DFD itself: source code, infrastructure, service availability, credentials, brand reputation, and regulatory compliance status all qualify. The DFD maps how assets flow and are handled; asset identification determines what is worth protecting in the first place.
+
 ---
 
 ## Step 3: Threat Identification (위협 식별)
