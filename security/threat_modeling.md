@@ -219,10 +219,20 @@ Map findings to controls and compliance requirements (for example, NIST and GDPR
 - Defined by the organization consuming the score, not the vendor
 
 #### Usage Notes
-- CVSS measures **severity**, not **risk** — it does not account for threat likelihood or business context
+- CVSS measures **severity**, not **risk** — it does not account for **threat likelihood** or **business context**
 - Use CVSS Base Score for vendor advisories and cross-organization comparison
 - Use Environmental Score for internal prioritization aligned with your asset sensitivity
 - Combine with threat intelligence (e.g., EPSS — Exploit Prediction Scoring System) for a more complete risk picture
+
+| | Base Score | Temporal Score | Environmental Score |
+|---|---|---|---|
+| **What it measures** | Intrinsic severity of the vulnerability itself | Current real-world exploitability and patch state | Severity adjusted to your specific deployment context |
+| **Changes over time?** | No — fixed at disclosure | Yes — changes as exploits appear or patches are released | Yes — changes as your environment changes |
+| **Who defines it?** | Vendor / researcher | Vendor / threat intel | Your organization |
+| **Key inputs** | AV, AC, PR, UI, Scope, C/I/A impact | Exploit maturity (E), Remediation level (RL), Report confidence (RC) | Modified Base metrics + asset sensitivity weights |
+| **Typical use** | Cross-org comparison, vendor advisories, NVD entries | Urgency decisions ("is there a public exploit yet?") | Internal prioritization aligned to your asset value |
+
+In practice: start with the **Base Score** for a vendor-neutral severity baseline → apply the **Temporal Score** to factor in whether a working exploit or patch exists right now → apply the **Environmental Score** to reflect how critical the affected asset actually is in your environment. Each layer narrows from "how bad is this vulnerability in general?" to "how urgent is this for us, today?"
 
 ### Priority Matrix (우선순위 매트릭스)
 
