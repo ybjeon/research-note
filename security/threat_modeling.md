@@ -7,6 +7,7 @@ a systematic process for identifying security threats, prioritizing them, and es
 
 
 ## Contents
+- Threat, Vulnerability, Risk (위협, 취약점, 위험)
 - Process Overview
 - Step 1: Scope Definition (범위 정의)
 - Step 2: System Analysis
@@ -17,6 +18,22 @@ a systematic process for identifying security threats, prioritizing them, and es
 - Threat Modeling Tools example (위협 모델링 도구 예시)
 
 ---
+
+## Threat, Vulnerability, Risk (위협, 취약점, 위험)
+
+- **Threat (위협)**: A potential cause of an unwanted incident, such as an attacker, malware, insider misuse, or natural disaster.
+- **Vulnerability (취약점)**: A weakness in design, implementation, configuration, or process that can be exploited by a threat.
+- **Risk (위험)**: The possibility of loss or damage when a threat exploits a vulnerability, usually evaluated by likelihood and impact.
+
+
+### Relationship
+- A **threat** targets a **vulnerability**, which creates **risk**.
+- Without a vulnerability, a threat may not lead to meaningful risk.
+- Practical risk evaluation is often modeled as:
+
+$$
+Risk \approx Likelihood \times Impact
+$$
 
 ## Process Overview
 
