@@ -1,13 +1,18 @@
 # Research notes
 
 - Security
-- LLM
+- LLM & AI Agent
 - AI Agent Security
 
 ## [Security](security/)
 - Terms
 - Threat modeling
 - Access control
+
+## [LLM & AI Agent](llm-ai-agent/README.md)
+- Terms
+- Frameworks
+- LLM toy project
 
 ### todo list
 - Authentication (인증)
