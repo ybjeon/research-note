@@ -35,6 +35,18 @@ a systematic process for identifying security threats, prioritizing them, and es
 $$
 Risk \approx Likelihood \times Impact
 $$
+- Likelihood depends on the presence of **vulnerabilities** and the capabilities of the **threat** actor.
+
+## Threat modeling process comparison
+
+| Approach | Primary Focus | Key Method | Best For |
+|---|---|---|---|
+| **NIST SP 800-30** | Risk assessment process | Risk identification → likelihood/impact analysis → risk response | Government, compliance-driven organizations |
+| **MS Threat Modeling Tool** | DFD-driven threat identification + DREAD + risk assessment | Threat ID: STRIDE per Element applied to DFD components, auto-generates threats and mitigations; Risk scoring: DREAD — 5-factor scoring (Damage, Reproducibility, Exploitability, Affected Users, Discoverability) | Developer-driven, design-phase threat identification and prioritization |
+| **OWASP Threat Dragon** | Visual, diagram-first threat modeling | Diagram-based; supports STRIDE, LINDDUN, CIA, DIE, PLOT4ai | Open-source teams, collaborative threat modeling sessions |
+| **Shostack (Threat Modeling)** | Pragmatic, practitioner-oriented threat modeling | 4-Question Framework: *What are we building? What can go wrong? What should we do? Did we do a good job?* | Teams new to threat modeling, systematic coverage |
+
+
 
 ## Process Overview
 
@@ -156,18 +168,17 @@ Map findings to controls and compliance requirements (for example, NIST and GDPR
 
 ### Overview
 
-| | **DREAD** | **CVSS** | **Priority Matrix** |
-|---|---|---|---|
-| **Purpose** | Rank threats by estimated risk | Score vulnerability severity | Triage threats by likelihood × impact |
-| **Output** | Numeric score 1–10 per threat | Numeric score 0.0–10.0 per vulnerability | Quadrant label (High / Medium / Low) |
-| **Input** | Subjective judgment across 5 criteria | Structured technical metrics (AV, AC, PR, UI, Scope, CIA) | Estimated likelihood and business impact |
-| **Objectivity** | Low — assessor-dependent | High — standardized formula | Medium — depends on estimation quality |
-| **Effort** | Low | Medium–High | Low |
-| **Scope** | Threat-level (design/architecture) | Vulnerability-level (CVE, patch advisory) | Threat or risk-level |
-| **Audience** | Internal dev/security team | Vendors, auditors, compliance teams | Executives, rapid triage |
-| **Standardization** | None (internal use) | Industry standard (FIRST) | None (organization-defined) |
-| **Limitation** | Subjective; inconsistent across teams | Measures severity, not risk; ignores business context | No numeric precision; coarse granularity |
-| **Best used when** | Early design phase, fast internal scoring | Compliance reporting, cross-org comparison | Executive briefing, quick prioritization |
+| | **DREAD** | **Priority Matrix** |
+|---|---|---|
+| **Purpose** | Rank threats by estimated risk | Triage threats by likelihood × impact |
+| **Output** | Numeric score 1–10 per threat | Quadrant label (High / Medium / Low) |
+| **Input** | Subjective judgment across 5 criteria | Estimated likelihood and business impact |
+| **Objectivity** | Low — assessor-dependent | Medium — depends on estimation quality |
+| **Scope** | Threat-level (design/architecture) | Threat or risk-level |
+| **Audience** | Internal dev/security team | Executives, rapid triage |
+| **Standardization** | None (internal use) | None (organization-defined) |
+| **Limitation** | Subjective; inconsistent across teams | No numeric precision; coarse granularity |
+| **Best used when** | Early design phase, fast internal scoring | Executive briefing, quick prioritization |
 
 ### DREAD
 
@@ -181,59 +192,7 @@ Map findings to controls and compliance requirements (for example, NIST and GDPR
 
 *each component scored 1~10
 
-**Risk Score (위험도) = (D + R + E + A + D) / 5**  
-
-### CVSS (Common Vulnerability Scoring System)
-- Industry-standard vulnerability severity scoring system 
-- Maintained by FIRST (Forum of Incident Response and Security Teams); current versions are **v3.1** and **v4.0**
-- Score range: **0.0 – 10.0** → mapped to severity levels
-
-| Score | Severity |
-|-------|----------|
-| 0.0 | None |
-| 0.1 – 3.9 | Low |
-| 4.0 – 6.9 | Medium |
-| 7.0 – 8.9 | High |
-| 9.0 – 10.0 | Critical |
-
-#### Score Components
-
-**Base Score** — intrinsic characteristics of the vulnerability, independent of time or environment
-
-| Metric Group | Metrics |
-|---|---|
-| Exploitability (공격 용이성) | Attack Vector (AV), Attack Complexity (AC), Privileges Required (PR), User Interaction (UI) |
-| Scope (범위) | Scope (S) — whether the vulnerability impacts components beyond its authorization boundary |
-| Impact (영향) | Confidentiality (C), Integrity (I), Availability (A) — each rated None / Low / High |
-
-**Temporal Score** — adjusts Base Score based on current exploit and patch state
-
-| Metric | Description |
-|---|---|
-| Exploit Code Maturity (E) | Whether a working exploit is publicly available (공개 익스플로잇 존재 여부) |
-| Remediation Level (RL) | Whether an official patch or workaround exists (공식 패치 또는 완화책 여부) |
-| Report Confidence (RC) | Confidence in the vulnerability report's accuracy (보고 신뢰도) |
-
-**Environmental Score** — tailors the score to a specific deployment context
-
-- Modifies Base metrics to reflect the actual environment (e.g., a confidentiality-focused system raises the Confidentiality impact weight)
-- Defined by the organization consuming the score, not the vendor
-
-#### Usage Notes
-- CVSS measures **severity**, not **risk** — it does not account for **threat likelihood** or **business context**
-- Use CVSS Base Score for vendor advisories and cross-organization comparison
-- Use Environmental Score for internal prioritization aligned with your asset sensitivity
-- Combine with threat intelligence (e.g., EPSS — Exploit Prediction Scoring System) for a more complete risk picture
-
-| | Base Score | Temporal Score | Environmental Score |
-|---|---|---|---|
-| **What it measures** | Intrinsic severity of the vulnerability itself | Current real-world exploitability and patch state | Severity adjusted to your specific deployment context |
-| **Changes over time?** | No — fixed at disclosure | Yes — changes as exploits appear or patches are released | Yes — changes as your environment changes |
-| **Who defines it?** | Vendor / researcher | Vendor / threat intel | Your organization |
-| **Key inputs** | AV, AC, PR, UI, Scope, C/I/A impact | Exploit maturity (E), Remediation level (RL), Report confidence (RC) | Modified Base metrics + asset sensitivity weights |
-| **Typical use** | Cross-org comparison, vendor advisories, NVD entries | Urgency decisions ("is there a public exploit yet?") | Internal prioritization aligned to your asset value |
-
-In practice: start with the **Base Score** for a vendor-neutral severity baseline → apply the **Temporal Score** to factor in whether a working exploit or patch exists right now → apply the **Environmental Score** to reflect how critical the affected asset actually is in your environment. Each layer narrows from "how bad is this vulnerability in general?" to "how urgent is this for us, today?"
+**Risk Score (위험도) = (D + R + E + A + D) / 5**     
 
 ### Priority Matrix (우선순위 매트릭스)
 
@@ -249,7 +208,6 @@ In practice: start with the **Base Score** for a vendor-neutral severity baselin
 > **Q.** Criteria for choosing evaluation metrics?  
 > **A.** Choose based on **purpose and context**:
 > - **DREAD**: Best for internal, team-level threat modeling during early design phases. Quick to apply but subjective — scores depend on the assessor's judgment.
-> - **CVSS**: Preferred when standardization matters — compliance reporting, vendor communication, or external audits. More objective and widely recognized, but requires more effort to score accurately.
 > - **Priority Matrix (Likelihood × Impact)**: Ideal for executive communication or rapid triage. Provides intuitive visual prioritization without numeric precision.
 >
 > In practice: use **DREAD or Priority Matrix** for fast internal prioritization, and **CVSS** when formal documentation or cross-organizational comparability is required.
@@ -302,6 +260,122 @@ Choose one of the following four response strategies for each threat:
 - **Product Management**: Provides business context, helps prioritize threats based on user impact and strategic goals. (비즈니스 컨텍스트 제공, 사용자 영향 및 전략적 목표에 따른 위협 우선순위 지정 지원)
 - **Compliance/Audit**: Ensures that identified threats and mitigations align with regulatory requirements and industry standards. (식별된 위협과 완화책이 규제 요구사항 및 업계 표준과 일치하는지 확인)
 - **Executive Leadership**: Reviews high-level risk assessments and approves resource allocation for mitigation efforts. (고위험 평가 검토 및 완화 노력에 대한 자원 할당 승인)
+
+---
+## Vulnerability Classification and Scoring System
+
+| Tool | Scope | Maintained by | Primary Use |
+|------|-------|--------------|-------------|
+| **CVE** | Specific known vulnerability instances | MITRE / NVD (NIST) | Reference and track disclosed vulnerabilities |
+| **CWE** | Weakness types / root cause categories | MITRE | Classify and identify weakness patterns in design or code |
+| **CWSS** | Scoring model for CWE weaknesses | MITRE | Prioritize weaknesses by technical impact and likelihood |
+| **CAPEC** | Attack pattern catalog | MITRE | Identify and classify attacker techniques and attack patterns |
+| **CVSS** | Vulnerability severity scoring system | FIRST | Quantify and communicate vulnerability severity with a standardized score |
+
+### CVE (Common Vulnerabilities and Exposures)
+- A publicly maintained dictionary of **known, disclosed vulnerabilities** (공개된 취약점 목록), each assigned a unique identifier (e.g., `CVE-2021-44228` for Log4Shell)
+- Maintained by **MITRE**, enriched with CVSS scores and references by the **NVD (National Vulnerability Database)**
+- CVE entries describe *what* is vulnerable (product, version) and *how* it can be exploited, but not the underlying root cause
+- Used in threat modeling to **check whether a component in scope has known vulnerabilities** and to link findings to published exploit data
+
+**CVE ID format**: `CVE-<year>-<sequence>` (e.g., `CVE-2024-3094`)
+
+### CWE (Common Weakness Enumeration)
+- A community-developed catalog of **software and hardware weakness types** (소프트웨어/하드웨어 취약점 유형 목록) — the *root causes* that lead to vulnerabilities
+- Maintained by **MITRE**; organized as a hierarchical taxonomy (e.g., CWE-89: SQL Injection, CWE-79: XSS, CWE-200: Information Exposure)
+- Unlike CVE (a specific instance), CWE describes a **category of weakness** applicable across many products and codebases
+- Used in threat modeling to **label the weakness type behind a threat** and guide secure design decisions
+
+| Level | Example | Meaning |
+|-------|---------|---------|
+| Class | CWE-20: Improper Input Validation | Broad weakness category |
+| Base | CWE-89: SQL Injection | Specific weakness type |
+| Variant | CWE-564: SQL Injection via Hibernate | Language/technology-specific instance |
+
+> CWE entries are commonly referenced alongside CVE — a CVE describes **a specific vulnerable product instance**, while CWE identifies the underlying **weakness class that caused it**, which makes developers understand the **root cause** and apply appropriate mitigations.
+
+### CWSS (Common Weakness Scoring System)
+- A scoring framework for **quantitatively prioritizing CWE weaknesses** (CWE 취약점 유형 우선순위 정량화), complementing CWE classification with a numeric score
+- Maintained by **MITRE**; scores range from **0 to 100**
+- Evaluates weaknesses across three metric groups:
+
+| Metric Group | Description |
+|---|---|
+| **Technical Impact** | Potential damage to confidentiality, integrity, availability if exploited |
+| **Acquisition / Finding** | Ease of discovering the weakness (visibility, likelihood of automated detection) |
+| **Exploitability** | Ease of exploiting the weakness (authentication required, interaction needed, prevalence) |
+
+- Less widely adopted than CVSS — primarily used in CWE-centric analyses, secure coding initiatives, and software assurance programs
+- Useful when prioritizing which weakness classes to address in a codebase or architecture, independent of specific CVE instances
+
+### CAPEC (Common Attack Pattern Enumeration and Classification)
+- A publicly maintained catalog of **known attack patterns** (공격 패턴 목록) — descriptions of how attackers exploit weaknesses in systems, software, and networks
+- Maintained by **MITRE**; each entry (e.g., `CAPEC-66: SQL Injection`) describes the attack technique, prerequisites, execution steps, and applicable defenses
+- Complements CWE: a CAPEC entry describes *how an attacker acts*, while CWE describes *the weakness being exploited*
+- Used in threat modeling to **enumerate realistic attack scenarios** against identified system components and map them to STRIDE categories or ATT&CK techniques
+
+**CAPEC ID format**: `CAPEC-<number>` (e.g., `CAPEC-116: Excavation`)
+
+| Level | Example | Meaning |
+|-------|---------|---------|
+| Meta | CAPEC-225: Exploitation of Authentication | Broad attack category |
+| Standard | CAPEC-66: SQL Injection | Specific attack technique |
+| Detailed | CAPEC-110: SQL Injection through SOAP | Narrowly scoped attack variant |
+
+> CAPEC, CWE, and CVE form a chain: **CAPEC** describes how an attacker targets a **CWE** weakness, which manifests as a specific **CVE** in a real product.
+
+### CVSS (Common Vulnerability Scoring System)
+- Industry-standard vulnerability severity scoring system
+- Maintained by **FIRST (Forum of Incident Response and Security Teams)**; current versions are **v3.1** and **v4.0**
+- Score range: **0.0 – 10.0** → mapped to severity levels
+
+| Score | Severity |
+|-------|----------|
+| 0.0 | None |
+| 0.1 – 3.9 | Low |
+| 4.0 – 6.9 | Medium |
+| 7.0 – 8.9 | High |
+| 9.0 – 10.0 | Critical |
+
+#### Score Components
+
+**Base Score** — intrinsic characteristics of the vulnerability, independent of time or environment
+
+| Metric Group | Metrics |
+|---|---|
+| Exploitability (공격 용이성) | Attack Vector (AV), Attack Complexity (AC), Privileges Required (PR), User Interaction (UI) |
+| Scope (범위) | Scope (S) — whether the vulnerability impacts components beyond its authorization boundary |
+| Impact (영향) | Confidentiality (C), Integrity (I), Availability (A) — each rated None / Low / High |
+
+**Temporal Score** — adjusts Base Score based on current exploit and patch state
+
+| Metric | Description |
+|---|---|
+| Exploit Code Maturity (E) | Whether a working exploit is publicly available (공개 익스플로잇 존재 여부) |
+| Remediation Level (RL) | Whether an official patch or workaround exists (공식 패치 또는 완화책 여부) |
+| Report Confidence (RC) | Confidence in the vulnerability report's accuracy (보고 신뢰도) |
+
+**Environmental Score** — tailors the score to a specific deployment context
+
+- Modifies Base metrics to reflect the actual environment (e.g., a confidentiality-focused system raises the Confidentiality impact weight)
+- Defined by the organization consuming the score, not the vendor
+
+#### Usage Notes
+- CVSS measures **severity**, not **risk** — it does not account for **threat likelihood** or **business context**
+- Use CVSS Base Score for vendor advisories and cross-organization comparison
+- Use Environmental Score for internal prioritization aligned with your asset sensitivity
+- Combine with threat intelligence (e.g., EPSS — Exploit Prediction Scoring System) for a more complete risk picture
+
+| | Base Score | Temporal Score | Environmental Score |
+|---|---|---|---|
+| **What it measures** | Intrinsic severity of the vulnerability itself | Current real-world exploitability and patch state | Severity adjusted to your specific deployment context |
+| **Changes over time?** | No — fixed at disclosure | Yes — changes as exploits appear or patches are released | Yes — changes as your environment changes |
+| **Who defines it?** | Vendor / researcher | Vendor / threat intel | Your organization |
+| **Key inputs** | AV, AC, PR, UI, Scope, C/I/A impact | Exploit maturity (E), Remediation level (RL), Report confidence (RC) | Modified Base metrics + asset sensitivity weights |
+| **Typical use** | Cross-org comparison, vendor advisories, NVD entries | Urgency decisions ("is there a public exploit yet?") | Internal prioritization aligned to your asset value |
+
+In practice: start with the **Base Score** for a vendor-neutral severity baseline → apply the **Temporal Score** to factor in whether a working exploit or patch exists right now → apply the **Environmental Score** to reflect how critical the affected asset actually is in your environment. Each layer narrows from "how bad is this vulnerability in general?" to "how urgent is this for us, today?"
+
 
 ---
 ## Threat Modeling Tools example (위협 모델링 도구 예시)
