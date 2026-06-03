@@ -376,6 +376,71 @@ Choose one of the following four response strategies for each threat:
 
 In practice: start with the **Base Score** for a vendor-neutral severity baseline → apply the **Temporal Score** to factor in whether a working exploit or patch exists right now → apply the **Environmental Score** to reflect how critical the affected asset actually is in your environment. Each layer narrows from "how bad is this vulnerability in general?" to "how urgent is this for us, today?"
 
+## Summary 
+### Relationships
+
+```mermaid
+graph TD
+    subgraph ModelingContext["Threat Modeling Context"]
+        UseCase["Use Case (사용 사례)"]
+        Assumption["Assumption (가정)"]
+        Scope["Scope (범위)"]
+        DFD["DFD (Data Flow Diagram)"]
+    end
+
+    subgraph Core["Core Concepts"]
+        Threat["Threat (위협)"]
+        Vuln["Vulnerability (취약점)"]
+        Risk["Risk (위험)"]
+        CM["Countermeasure (대응책)"]
+    end
+
+    subgraph Identification["Threat Identification"]
+        STRIDE["STRIDE (Threat Classification)"]
+        ThreatType["Threat Type"]
+        AttackScenario["Attack Scenario (공격 시나리오)"]
+    end
+
+    subgraph Assessment["Threat Assessment"]
+        DREAD["DREAD (Risk Scoring)"]
+    end
+
+    subgraph Classif["Classification & Scoring"]
+        CAPEC["CAPEC (Attack Pattern Classification)"]
+        CWE["CWE (Weakness Classification)"]
+        CWSS["CWSS (Weakness Scoring)"]
+        CVE["CVE (Known Vulnerability Instance)"]
+        CVSS["CVSS (Vulnerability Severity Scoring)"]
+    end
+
+    UseCase -->|"defines"| Assumption
+    UseCase -->|"defines"| Scope
+    UseCase -->|"defines"| DFD
+    Assumption -->|"constrains"| Scope
+    Scope -->|"defines boundary of"| DFD
+    DFD -->|"input to"| STRIDE
+    DFD -->|"reveals"| Vuln
+    AttackScenario -->|"instantiates"| Threat
+
+    STRIDE -->|"defines"| ThreatType
+    ThreatType -->|"classifies"| Threat
+    Threat -->|"input to"| DREAD
+    DREAD -->|"scores"| Risk
+
+    Threat -->|"exploits"| Vuln
+    Threat -->|"creates"| Risk
+    Vuln -->|"increases"| Risk
+    CM -->|"mitigates"| Risk
+
+    CAPEC -->|"describes"| AttackScenario
+    CAPEC -->|"classifies"| Threat
+    CAPEC -->|"targets"| CWE
+    CWE -->|"root cause of"| CVE
+    CWE -->|"classifies"| Vuln
+    CVE -->|"specific instance of"| Vuln
+    CWSS -->|"scores"| CWE
+    CVSS -->|"scores severity of"| CVE
+```
 
 ---
 ## Threat Modeling Tools example (위협 모델링 도구 예시)
