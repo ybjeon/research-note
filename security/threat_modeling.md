@@ -15,6 +15,7 @@ a systematic process for identifying security threats, prioritizing them, and es
 - Step 4: Threat Assessment & Prioritization (위협 평가 및 우선순위 지정)
 - Step 5: Mitigation (대응책 도출)
 - Step 6: Validation & Documentation (검증 및 문서화)
+- Roles in assessing threats (위협 평가에서의 역할)
 - Threat Modeling Tools example (위협 모델링 도구 예시)
 
 ---
@@ -288,6 +289,15 @@ Choose one of the following four response strategies for each threat:
 - Risk score per threat (위협별 위험도 점수)
 - Countermeasures and owners (대응책 및 담당자)
 - Review schedule and history (검토 일정 및 이력)
+
+---
+## Roles in assessing threats (위협 평가에서의 역할)
+ 
+- **Security Team**: Provides expertise on threat modeling methodologies, assists in identifying threats, and evaluates technical risk. (위협 모델링 방법론에 대한 전문 지식 제공, 위협 식별 지원, 기술적 위험 평가)
+- **Development Team**: Offers insights into system design, implementation details, and feasibility of mitigations. (시스템 설계, 구현 세부 사항, 완화책의 실현 가능성에 대한 통찰력 제공)
+- **Product Management**: Provides business context, helps prioritize threats based on user impact and strategic goals. (비즈니스 컨텍스트 제공, 사용자 영향 및 전략적 목표에 따른 위협 우선순위 지정 지원)
+- **Compliance/Audit**: Ensures that identified threats and mitigations align with regulatory requirements and industry standards. (식별된 위협과 완화책이 규제 요구사항 및 업계 표준과 일치하는지 확인)
+- **Executive Leadership**: Reviews high-level risk assessments and approves resource allocation for mitigation efforts. (고위험 평가 검토 및 완화 노력에 대한 자원 할당 승인)
 
 ---
 ## Threat Modeling Tools example (위협 모델링 도구 예시)
