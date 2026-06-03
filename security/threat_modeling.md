@@ -242,6 +242,10 @@ In practice: start with the **Base Score** for a vendor-neutral severity baselin
 | **High Impact** | 🟡 Medium | 🔴 High — Act Immediately |
 | **Low Impact** | 🟢 Low | 🟡 Medium |
 
+> **Vulnerability assessment**: identifies and scores specific weaknesses (e.g., CVSS for a SQL injection vulnerability)  
+> **Threat assessment**: evaluates potential attack scenarios and their likelihood and impact   
+> **Risk assessment**: combines threat and vulnerability assessments to prioritize mitigation efforts
+
 > **Q.** Criteria for choosing evaluation metrics?  
 > **A.** Choose based on **purpose and context**:
 > - **DREAD**: Best for internal, team-level threat modeling during early design phases. Quick to apply but subjective — scores depend on the assessor's judgment.
