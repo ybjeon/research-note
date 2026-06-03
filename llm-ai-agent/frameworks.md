@@ -2,6 +2,15 @@
 
 ## LLM (Language Model)
 
+## Agent related
+
+### AGENTS.md
+
+### SKILLS.md
+
+### DDD/BDD/SDD
+
+
 ## MCP (Model Context Provider)
 
 ### FastMCP (python:`fastmcp`)
