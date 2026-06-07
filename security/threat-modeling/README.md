@@ -501,8 +501,8 @@ graph TD
 - [CAPEC (Common Attack Pattern Enumeration and Classification)](https://capec.mitre.org/)
 - [NIST SP 800-30: Guide for Conducting Risk Assessments](https://csrc.nist.gov/pubs/sp/800/30/r1/final)
 - [NIST SP 800-154: Guide to Data-Centric System Threat Modeling](https://csrc.nist.gov/pubs/sp/800/154/ipd)
-- [Threat Modeling: Designing for Security — Adam Shostack](references/Threat%20Modeling%20-%20Adam%20Shostack.pdf)
-- [Security Engineering — Ross Anderson](references/Security%20Engineering%20-%20Ross%20Enderson.pdf)
+- [Security Engineering - Ross Anderson](https://www.cl.cam.ac.uk/archive/rja14/Papers/SEv3.pdf)
+- [Threat Modeling - Adam Shostack](https://public.magendanz.com/Temp/Threat%20Modeling%20-%20Shostack,%20Adam.pdf)
 
 [1]: https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool?utm_source=chatgpt.com "Microsoft Threat Modeling Tool overview - Azure"
 [2]: https://owasp.org/www-project-threat-dragon/?utm_source=chatgpt.com "OWASP Threat Dragon"
