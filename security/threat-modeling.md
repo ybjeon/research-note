@@ -484,6 +484,14 @@ graph TD
 | **draw.io / Lucidchart** | Diagramming tools for manual DFD creation |
 
 ---
+## FAQs
+
+> **Q.** Can Agent-to-Agent communication be represented as a self-loop on a single entity in DFD?  
+> **A.** Technically possible, but **not recommended**. If Agent A and Agent B are independent execution entities, they should be drawn as **separate Process or External Entity nodes**.  
+> **Same permissions, same trust level, same runtime module** → self-loop is acceptable. but, not recommended.
+> **Different permissions, roles, trust boundaries, runtime environments, or owners** → draw them as separate entities.
+
+---
 
 ## References & Frameworks
 - [OWASP Threat Modeling](https://owasp.org/www-community/Threat_Modeling)
