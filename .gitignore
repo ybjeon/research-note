@@ -1,1 +1,6 @@
 .github/
+.claude/
+CLAUDE.md
+*/diagrams/*.png
+*/diagrams/*.svg
+todos.md
