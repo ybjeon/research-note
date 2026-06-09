@@ -1,6 +1,4 @@
-# Agentic network
-
-## Gateway design pattern
+# Agent Gateway Architecture
 
 ### 1. Centralized Gateway/Orchestrator
 
