@@ -1,4 +1,4 @@
-# Terms
+# Terms in LLM & AI Agent
 
 Glossary of key terms used in LLM-based AI agent systems.
 
@@ -62,3 +62,4 @@ Glossary of key terms used in LLM-based AI agent systems.
 | **Framework** | |
 | **Platform** | |
 | **Ecosystem** | |
+| **Tenant** | A logically isolated unit within a multi-tenant system; represents a customer, organization, or user group that shares infrastructure but has its own data and configuration boundaries. |
