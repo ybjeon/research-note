@@ -1,15 +1,12 @@
-# Frameworks used in AI Agent
+# Components in AI Agent
 
 ## LLM (Language Model)
 
-## Agent related
+## Orchestrator
 
-### AGENTS.md
+## Tool call
 
-### SKILLS.md
-
-### DDD/BDD/SDD
-
+## Memory
 
 ## MCP (Model Context Provider)
 
