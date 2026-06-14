@@ -1,16 +1,16 @@
 # AI Agent
 ## Contents
-- [Overview](overview.md)
 - [Terms](terms.md)
 - [Components](components.md)
 - [Agent Landscape](agent-landscape.md)
+- [Agent Harness](agent-harness.md)
 
 ## Agent Gateway Architecture
-- [Agent Gateway Architecture](agent-gateway-architecture.md)
+- [Agent Gateway Architecture](../ai-agent-security/agent-gateway-architecture.md)
 
 ## Articles
-- [LangChain: The Anatomy of an Agent Harness](langchain-harness-anatomy.md)
-- [LangChain: Building a Custom Agent Harness](langchain-custom-harness.md)
+- [LangChain: The Anatomy of an Agent Harness](articles/langchain-harness-anatomy.md)
+- [LangChain: Building a Custom Agent Harness](articles/langchain-custom-harness.md)
 
 ## LLM toy project
 Github: [ybjeon/ai-agent-toyproject](https://github.com/ybjeon/ai-agent-toyproject)
