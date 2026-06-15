@@ -1,7 +1,7 @@
 # AI Agent
 ## Contents
 - [Terms](terms.md)
-- [Components](components.md)
+- [Components](agent-components.md)
 - [Agent Landscape](agent-landscape.md)
 - [Agent Harness](agent-harness.md)
 
