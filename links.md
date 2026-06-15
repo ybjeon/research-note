@@ -8,12 +8,12 @@
 |--------|------|-------------|
 | [README.md](README.md) | 12 | [llm-ai-agent/README.md](llm-ai-agent/README.md) |
 | [llm-ai-agent/README.md](llm-ai-agent/README.md) | 3 | [llm-ai-agent/terms.md](llm-ai-agent/terms.md) |
-| [llm-ai-agent/README.md](llm-ai-agent/README.md) | 4 | [llm-ai-agent/components.md](llm-ai-agent/components.md) |
+| [llm-ai-agent/README.md](llm-ai-agent/README.md) | 4 | [llm-ai-agent/agent-components.md](llm-ai-agent/agent-components.md) |
 | [llm-ai-agent/README.md](llm-ai-agent/README.md) | 5 | [llm-ai-agent/agent-landscape.md](llm-ai-agent/agent-landscape.md) |
 | [llm-ai-agent/README.md](llm-ai-agent/README.md) | 6 | [llm-ai-agent/agent-harness.md](llm-ai-agent/agent-harness.md) |
-| [llm-ai-agent/README.md](llm-ai-agent/README.md) | 8 | [ai-agent-security/agent-gateway-architecture.md](ai-agent-security/agent-gateway-architecture.md) |
-| [llm-ai-agent/README.md](llm-ai-agent/README.md) | 11 | [llm-ai-agent/articles/langchain-harness-anatomy.md](llm-ai-agent/articles/langchain-harness-anatomy.md) |
-| [llm-ai-agent/README.md](llm-ai-agent/README.md) | 12 | [llm-ai-agent/articles/langchain-custom-harness.md](llm-ai-agent/articles/langchain-custom-harness.md) |
+| [llm-ai-agent/README.md](llm-ai-agent/README.md) | 9 | [ai-agent-security/agent-gateway-architecture.md](ai-agent-security/agent-gateway-architecture.md) |
+| [llm-ai-agent/README.md](llm-ai-agent/README.md) | 12 | [llm-ai-agent/articles/langchain-harness-anatomy-kor.md](llm-ai-agent/articles/langchain-harness-anatomy-kor.md) |
+| [llm-ai-agent/README.md](llm-ai-agent/README.md) | 13 | [llm-ai-agent/articles/langchain-custom-harness-kor.md](llm-ai-agent/articles/langchain-custom-harness-kor.md) |
 | [security/README.md](security/README.md) | 3 | [security/overview.md](security/overview.md) |
 | [security/README.md](security/README.md) | 4 | [security/basic-security.md](security/basic-security.md) |
 | [security/README.md](security/README.md) | 5 | [security/access-control.md](security/access-control.md) |
