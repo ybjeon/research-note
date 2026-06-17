@@ -20,6 +20,7 @@
 | [security/README.md](security/README.md) | 6 | [security/threat-modeling/README.md](security/threat-modeling/README.md) |
 | [security/README.md](security/README.md) | 7 | [security/threat-modeling/ms-threat-modeling-tool.md](security/threat-modeling/ms-threat-modeling-tool.md) |
 | [security/terms.md](security/terms.md) | 26 | [security/access-control.md](security/access-control.md) |
+| [dev/README.md](dev/README.md) | 7 | [dev/python.md](dev/python.md) |
 
 ## Dead Links
 
