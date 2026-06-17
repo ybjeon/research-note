@@ -12,6 +12,9 @@
 - [LangChain: The Anatomy of an Agent Harness](articles/langchain-harness-anatomy-kor.md)
 - [LangChain: Building a Custom Agent Harness](articles/langchain-custom-harness-kor.md)
 
+## LangGraph
+- [LangGraph Basics](langgraph.ipynb)
+
 ## LLM toy project
 Github: [ybjeon/ai-agent-toyproject](https://github.com/ybjeon/ai-agent-toyproject)
 - [test_llm.py](https://github.com/ybjeon/ai-agent-toyproject/blob/main/test_llm.py)

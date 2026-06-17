@@ -3,5 +3,7 @@
 CLAUDE.md
 */diagrams/*.png
 */diagrams/*.svg
+uv.lock
+
 todos.md
 tmp.md

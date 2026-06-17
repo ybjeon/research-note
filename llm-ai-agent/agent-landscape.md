@@ -47,3 +47,37 @@ Client-side implementation languages are not always fully disclosed, but for a s
 | **Semantic Kernel** | Microsoft (OSS) | SDK/framework for composing LLM functions, planners, and tool integrations across languages |
 
 ---
+
+### LangGraph
+
+LangGraph is a graph-based orchestration framework for building stateful, multi-actor agent workflows on top of LangChain. It models an agent workflow as a directed graph where **nodes** are processing units (LLM calls, tools, or sub-agents) and **edges** define the control flow between them — including conditional branching and cycles.
+
+#### Core Concepts
+
+| Concept | Description |
+|---|---|
+| **Node** | A single processing unit: an LLM call, a tool execution, or an arbitrary Python function |
+| **Edge** | A directed transition between nodes; can be unconditional or conditional (based on state) |
+| **State** | A shared, typed object passed through the graph; each node reads and writes to it |
+| **Graph** | The overall workflow definition compiled from nodes and edges |
+| **Checkpointer** | Persistence layer that saves state at each step, enabling pause/resume and human-in-the-loop |
+
+#### Why LangGraph
+
+- **Cycles over DAGs**: Unlike simple chain-based pipelines, LangGraph supports loops — essential for reflection, retry, and tool-use patterns where an agent may need to revisit a step.
+- **Explicit state management**: All inter-node data flows through a single typed state object, making agent behavior easier to reason about and debug.
+- **Human-in-the-loop**: The checkpointer allows execution to pause at a node boundary, await human approval or input, and resume — critical for high-stakes workflows.
+- **Streaming**: Emits intermediate state updates per node, enabling real-time visibility into long-running agent runs.
+- **Multi-agent orchestration**: Supports supervisor and hierarchical patterns where one agent routes tasks to specialized sub-agents.
+
+#### When to Use
+
+- When the agent workflow requires **cycles** (e.g., plan → act → reflect → re-plan)
+- When **persistent state** across turns or sessions is needed
+- When **human review** must be inserted at specific decision points
+- When building **multi-agent systems** with explicit routing logic
+
+#### When Not to Use
+
+- Simple single-pass pipelines (LangChain LCEL or plain function calls are sufficient)
+- Prototypes where graph overhead adds unnecessary complexity
