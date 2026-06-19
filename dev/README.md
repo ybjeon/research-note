@@ -8,3 +8,4 @@
 - [Python](python.md) — docstring formats, conventions, tips
 - [tmux](tmux.md) — session and pane commands
 - [uv](uv.md) — fast Python package manager usage
+- [Development Methodology](development-methodology.md)
