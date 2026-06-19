@@ -1,6 +1,28 @@
 # OAuth
+## What is OAuth?
 
-## 2LO & 3LO
+OAuth (Open Authorization) is an open standard protocol for **delegated authorization (위임 인가)**.
+- Allows a client application to access resources on behalf of a user **without exposing the user's credentials**.
+- The user grants limited access (scope) to the client; the client receives a token representing that grant.
+- OAuth 2.0 (RFC 6749) is the current standard; OAuth 1.0 is deprecated.
+
+**Key roles**
+| Role | Description |
+|------|-------------|
+| Resource Owner | The user who owns the data and grants access |
+| Client | The application requesting access on behalf of the user |
+| Authorization Server | Issues tokens after authenticating the user and obtaining consent |
+| Resource Server | Hosts the protected resources; validates tokens on each request |
+
+**Core concepts**
+- **Access Token**: Short-lived credential used to call the Resource Server API.
+- **Refresh Token**: Long-lived credential used to obtain new access tokens without re-authentication.
+- **Scope (범위)**: Defines the specific permissions the client is requesting (e.g., `read:email`, `write:calendar`).
+- **Grant Type**: The flow used to obtain a token (Authorization Code, Client Credentials, Device Code, etc.).
+
+OAuth is an **authorization (인가)** protocol, not an **authentication (인증)** protocol. For authentication, OpenID Connect (OIDC) is built on top of OAuth 2.0.
+
+## 2LO & 3LO (2, 3-legged OAuth)
 
 | Term | Parties | Consent Screen | Representative Grant | Use Case |
 |------|---------|----------------|---------------------|----------|

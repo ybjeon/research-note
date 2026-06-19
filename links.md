@@ -6,7 +6,7 @@
 
 | Source | Line | Destination |
 |--------|------|-------------|
-| [ai-agent-security/agent-oauth.md](ai-agent-security/agent-oauth.md) | 5 | [security/oauth.md](security/oauth.md) |
+| [ai-agent-security/agent-oauth.md](ai-agent-security/agent-oauth.md) | 3 | [security/oauth.md](security/oauth.md) |
 | [ai-agent-security/README.md](ai-agent-security/README.md) | 5 | [ai-agent-security/agent-gateway-architecture.md](ai-agent-security/agent-gateway-architecture.md) |
 | [ai-agent-security/README.md](ai-agent-security/README.md) | 6 | [ai-agent-security/agent-oauth.md](ai-agent-security/agent-oauth.md) |
 | [ai-agent-security/README.md](ai-agent-security/README.md) | 7 | [ai-agent-security/enterprise-agent-platforms.md](ai-agent-security/enterprise-agent-platforms.md) |

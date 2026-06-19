@@ -1,4 +1,34 @@
 # Agent Authentication & Authorization
+## OIDC (OpenID Connect)
+> Refer OAuth page in [/security/oauth.md](/security/oauth.md)
+
+OpenID Connect (OIDC) is an **authentication (인증)** layer built on top of OAuth 2.0.
+- OAuth 2.0 answers: *"Is this client allowed to access this resource?"*
+- OIDC answers: *"Who is the user behind this request?"*
+
+OIDC adds an **ID Token** (JWT) to the OAuth flow, which contains verified identity claims about the user (e.g., `sub`, `email`, `name`).
+
+**Common use cases**
+- "Sign in with Google / GitHub" buttons on web and mobile apps
+- SSO (Single Sign-On) across enterprise internal services
+- IdP (Identity Provider) federation (e.g., Okta, Azure AD, Keycloak)
+- Federating identity across microservices (service-to-user identity propagation)
+
+| | OAuth 2.0 | OIDC |
+|---|---|---|
+| Purpose | Authorization (인가) | Authentication (인증) |
+| Token | Access Token | Access Token + **ID Token** |
+| Answers | "What can this client do?" | "Who is the user?" |
+
+### OIDC in Agent context
+
+Agents face a two-part identity problem:
+1. **Who is the user the agent is acting on behalf of?** → OIDC ID Token proves user identity
+2. **What is the agent allowed to do?** → OAuth 2.0 Access Token scopes define permissions
+
+When an agent receives a request, it should validate the ID Token to confirm the user's identity before acting. This prevents an agent from being tricked into acting on behalf of an unauthorized or spoofed user.
+
+**Agent's own identity** is a separate concern — the agent itself must authenticate to downstream services (e.g., APIs, tools). This is typically handled via 2LO (Client Credentials), not OIDC.
 
 ## 2LO vs 3LO: recommended approach for Agents
 
