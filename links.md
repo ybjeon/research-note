@@ -7,6 +7,10 @@
 | Source | Line | Destination |
 |--------|------|-------------|
 | [ai-agent-security/agent-oauth.md](ai-agent-security/agent-oauth.md) | 5 | [security/oauth.md](security/oauth.md) |
+| [ai-agent-security/README.md](ai-agent-security/README.md) | 5 | [ai-agent-security/agent-gateway-architecture.md](ai-agent-security/agent-gateway-architecture.md) |
+| [ai-agent-security/README.md](ai-agent-security/README.md) | 6 | [ai-agent-security/agent-oauth.md](ai-agent-security/agent-oauth.md) |
+| [ai-agent-security/README.md](ai-agent-security/README.md) | 7 | [ai-agent-security/enterprise-agent-platforms.md](ai-agent-security/enterprise-agent-platforms.md) |
+| [ai-agent-security/README.md](ai-agent-security/README.md) | 8 | [ai-agent-security/threat-modeling.md](ai-agent-security/threat-modeling.md) |
 | [dev/README.md](dev/README.md) | 5 | [dev/claude.md](dev/claude.md) |
 | [dev/README.md](dev/README.md) | 6 | [dev/git.md](dev/git.md) |
 | [dev/README.md](dev/README.md) | 7 | [dev/markdown.md](dev/markdown.md) |
