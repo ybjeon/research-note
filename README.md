@@ -33,6 +33,7 @@ Basic concepts and components of LLM & AI Agent, and toy projects.
 
 ### [AI Agent Security](ai-agent-security/README.md)
 Security considerations for AI Agents, including architecture, threats, and attack vectors.
-- AI Agent architecture (Single-agent, Multi-agent)
+- Threats and vulnerabilities in AI Agents
+- AI Agent architecture + guideline (Single-agent, Multi-agent)
 - Threat modeling in AI Agents (AIVSS, AARS)
 - Toy projects
