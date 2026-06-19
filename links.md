@@ -7,7 +7,12 @@
 | Source | Line | Destination |
 |--------|------|-------------|
 | [ai-agent-security/agent-oauth.md](ai-agent-security/agent-oauth.md) | 5 | [security/oauth.md](security/oauth.md) |
-| [dev/README.md](dev/README.md) | 7 | [dev/python.md](dev/python.md) |
+| [dev/README.md](dev/README.md) | 5 | [dev/claude.md](dev/claude.md) |
+| [dev/README.md](dev/README.md) | 6 | [dev/git.md](dev/git.md) |
+| [dev/README.md](dev/README.md) | 7 | [dev/markdown.md](dev/markdown.md) |
+| [dev/README.md](dev/README.md) | 8 | [dev/python.md](dev/python.md) |
+| [dev/README.md](dev/README.md) | 9 | [dev/tmux.md](dev/tmux.md) |
+| [dev/README.md](dev/README.md) | 10 | [dev/uv.md](dev/uv.md) |
 | [llm-ai-agent/README.md](llm-ai-agent/README.md) | 3 | [llm-ai-agent/terms.md](llm-ai-agent/terms.md) |
 | [llm-ai-agent/README.md](llm-ai-agent/README.md) | 4 | [llm-ai-agent/agent-components.md](llm-ai-agent/agent-components.md) |
 | [llm-ai-agent/README.md](llm-ai-agent/README.md) | 5 | [llm-ai-agent/agent-landscape.md](llm-ai-agent/agent-landscape.md) |
