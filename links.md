@@ -22,10 +22,9 @@
 | [llm-ai-agent/README.md](llm-ai-agent/README.md) | [llm-ai-agent/agent-components.md](llm-ai-agent/agent-components.md) |
 | [llm-ai-agent/README.md](llm-ai-agent/README.md) | [llm-ai-agent/agent-landscape.md](llm-ai-agent/agent-landscape.md) |
 | [llm-ai-agent/README.md](llm-ai-agent/README.md) | [llm-ai-agent/agent-harness.md](llm-ai-agent/agent-harness.md) |
-| [llm-ai-agent/README.md](llm-ai-agent/README.md) | [ai-agent-security/agent-gateway-architecture.md](ai-agent-security/agent-gateway-architecture.md) |
 | [llm-ai-agent/README.md](llm-ai-agent/README.md) | [llm-ai-agent/articles/langchain-harness-anatomy-kor.md](llm-ai-agent/articles/langchain-harness-anatomy-kor.md) |
 | [llm-ai-agent/README.md](llm-ai-agent/README.md) | [llm-ai-agent/articles/langchain-custom-harness-kor.md](llm-ai-agent/articles/langchain-custom-harness-kor.md) |
-| [llm-ai-agent/README.md](llm-ai-agent/README.md) | [llm-ai-agent/langgraph-example.ipynb](llm-ai-agent/langgraph-example.ipynb) |
+| [llm-ai-agent/README.md](llm-ai-agent/README.md) | [llm-ai-agent/articles/context-rot.md](llm-ai-agent/articles/context-rot.md) |
 | [README.md](README.md) | [llm-ai-agent/README.md](llm-ai-agent/README.md) |
 | [security/README.md](security/README.md) | [security/overview.md](security/overview.md) |
 | [security/README.md](security/README.md) | [security/basic-security.md](security/basic-security.md) |

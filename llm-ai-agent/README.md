@@ -8,6 +8,7 @@
 ## Articles
 - [LangChain: The Anatomy of an Agent Harness](articles/langchain-harness-anatomy-kor.md)
 - [LangChain: Building a Custom Agent Harness](articles/langchain-custom-harness-kor.md)
+- [Context Rot](articles/context-rot.md)
 
 ## LangGraph
 - [LangGraph Basics](langgraph-example.ipynb)
