@@ -104,7 +104,7 @@ $$
 | Name | Description |
 |------|------|
 | **STRIDE** | Threat classification model covering **S**poofing, **T**ampering, **R**epudiation, **I**nformation Disclosure, **D**enial of Service, **E**levation of Privilege. |
-| **LINDDUN** | Privacy threat modeling framework covering **L**inkability, **I**dentifiability, **N**on-repudiation, **D**etectability, **D**isclosure of information, **U**nawareness, **N**on-compliance. |
+| **LINDDUN** | Privacy threat modeling framework covering **L**inkability, **I**dentifiability, **N**on-repudiation, **D**etectability, **D**isclosure of information, **U**nawareness (Content Unawareness), **N**on-compliance (Policy and Consent Noncompliance). |
 | **CIA** | Classic security triad — **C**onfidentiality, **I**ntegrity, **A**vailability. |
 | **DIE** | **D**ata, **I**dentity, and **E**nvironment — a model for categorizing threats based on what they target. |
 | **PLOT4ai** | AI-specific threat modeling framework covering **P**rivacy, **L**oss of Control, **O**perational, and **T**rust threats in AI systems. |
@@ -182,6 +182,8 @@ Map findings to controls and compliance requirements (for example, NIST and GDPR
 
 ### DREAD
 
+> DREAD was retired from the Microsoft SDL in 2010 due to its subjectivity and tendency to produce inconsistent scores across teams. It is still used informally in some organizations but is no longer a recommended standard.
+
 | Item | Description|
 |------|------|
 | **D**amage | Magnitude of damage if attack succeeds (공격 성공 시 피해 규모) |
@@ -224,7 +226,7 @@ Choose one of the following four response strategies for each threat:
 | **Mitigate <br> (완화)** | Reduce the likelihood or impact of the threat (위협 발생 가능성 또는 영향 감소) | Input validation, applying encryption (입력 검증, 암호화 적용) |
 | **Accept <br> (수용)** | Accept the risk when it is low relative to cost (비용 대비 위험이 낮을 때 위험 감수) | Monitor-only for low-risk vulnerabilities (낮은 위험도 취약점 모니터링만 수행) |
 | **Transfer <br> (전가)** | Transfer responsibility externally (책임을 외부로 이전) | Insurance, use of external services (보험 가입, 외부 서비스 이용) |
-| **Eliminate <br> (제거)** | Remove the feature or asset causing the threat (위협 자체를 유발하는 기능/자산 제거) | Disable unnecessary features (불필요한 기능 비활성화) |
+| **Avoid <br> (회피)** | Do not build the feature, or change the design so the threat disappears entirely (기능을 만들지 않거나 설계를 바꿔 위협 자체를 없앰) | Remove the file upload feature; switch to a third-party service that owns the risk |
 
 ### Common Countermeasures per STRIDE (STRIDE별 일반적인 대응책)
 

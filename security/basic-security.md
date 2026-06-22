@@ -55,7 +55,7 @@ $$
 - **Authorization (권한부여)**: The process of determining whether an authenticated subject can perform a specific action on an object.
 - **Policy (정책)**: The rule set that defines who can do what under which conditions.
 - **Permission (권한)**: An allowed action on a specific object or object group.
-- **Role (역할)**: A collection of permissions assigned based on job function.
+- **Role (역할)**: A fixed set of access permissions that one or more principals may assume for a period of time — distinct from a group, which is a list of principals.
 - **Privilege (특권)**: A higher-risk permission set, often including administrative or sensitive operations.
 - **Context (맥락)**: Additional signals used in a decision, such as time, location, device posture, session risk, or data sensitivity.
 
