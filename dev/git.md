@@ -43,8 +43,20 @@ git push -u origin <branch>     # push and set upstream
 git log --oneline --graph       # compact commit graph
 git diff                        # unstaged changes
 git diff --staged               # staged changes
-git stash                       # stash uncommitted changes
-git stash pop                   # restore stashed changes
+``` 
+
+### Stash
+```bash
+git stash                       # stash uncommitted changes (tracked files)
+git stash push -u               # stash including untracked files
+git stash push -m "message"     # stash with a description
+git stash list                  # list all stashes
+git stash show stash@{0}        # show diff of a stash
+git stash pop                   # apply latest stash and remove it
+git stash apply stash@{1}       # apply a specific stash (keep it)
+git stash drop stash@{0}        # delete a specific stash
+git stash clear                 # delete all stashes
+git stash branch <name>         # create a branch from a stash
 ```
 
 ## Refresh All Branches
