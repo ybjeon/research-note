@@ -14,6 +14,7 @@
 | [dev/README.md](dev/README.md) | [dev/claude.md](dev/claude.md) |
 | [dev/README.md](dev/README.md) | [dev/git.md](dev/git.md) |
 | [dev/README.md](dev/README.md) | [dev/markdown.md](dev/markdown.md) |
+| [dev/README.md](dev/README.md) | [dev/mermaid.md](dev/mermaid.md) |
 | [dev/README.md](dev/README.md) | [dev/python.md](dev/python.md) |
 | [dev/README.md](dev/README.md) | [dev/tmux.md](dev/tmux.md) |
 | [dev/README.md](dev/README.md) | [dev/uv.md](dev/uv.md) |

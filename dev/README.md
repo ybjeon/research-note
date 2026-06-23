@@ -6,6 +6,7 @@
 - [Claude](claude.md)
 - [Git](git.md)
 - [Markdown](markdown.md)
+- [Mermaid](mermaid.md)
 - [Python](python.md)
 - [tmux](tmux.md)
 - [uv](uv.md) — fast Python package manager usage
