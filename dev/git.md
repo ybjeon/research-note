@@ -24,6 +24,7 @@ git commit --amend              # amend the last commit
 git branch                      # list local branches
 git branch <name>               # create a branch
 git branch -d <name>            # delete a branch
+git branch -m <old> <new>       # rename a branch
 git switch <name>               # switch to a branch
 git switch -c <name>            # create and switch
 git merge <name>                # merge branch into current
