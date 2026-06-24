@@ -11,6 +11,7 @@
 | [ai-agent-security/README.md](ai-agent-security/README.md) | [ai-agent-security/agent-oauth.md](ai-agent-security/agent-oauth.md) |
 | [ai-agent-security/README.md](ai-agent-security/README.md) | [ai-agent-security/enterprise-agent-platforms.md](ai-agent-security/enterprise-agent-platforms.md) |
 | [ai-agent-security/README.md](ai-agent-security/README.md) | [ai-agent-security/threat-modeling.md](ai-agent-security/threat-modeling.md) |
+| [ai-agent-security/README.md](ai-agent-security/README.md) | [ai-agent-security/owasp-top10-agent.md](ai-agent-security/owasp-top10-agent.md) |
 | [dev/README.md](dev/README.md) | [dev/claude.md](dev/claude.md) |
 | [dev/README.md](dev/README.md) | [dev/git.md](dev/git.md) |
 | [dev/README.md](dev/README.md) | [dev/markdown.md](dev/markdown.md) |
