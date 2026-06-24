@@ -7,6 +7,7 @@
 | Source | Destination |
 |--------|-------------|
 | [ai-agent-security/agent-oauth.md](ai-agent-security/agent-oauth.md) | [security/oauth.md](security/oauth.md) |
+| [ai-agent-security/agent-security-landscape.md](ai-agent-security/agent-security-landscape.md) | [ai-agent-security/articles/owasp_top10_agentic_applications.md](ai-agent-security/articles/owasp_top10_agentic_applications.md) |
 | [ai-agent-security/README.md](ai-agent-security/README.md) | [ai-agent-security/agent-gateway-architecture.md](ai-agent-security/agent-gateway-architecture.md) |
 | [ai-agent-security/README.md](ai-agent-security/README.md) | [ai-agent-security/agent-oauth.md](ai-agent-security/agent-oauth.md) |
 | [ai-agent-security/README.md](ai-agent-security/README.md) | [ai-agent-security/enterprise-agent-platforms.md](ai-agent-security/enterprise-agent-platforms.md) |

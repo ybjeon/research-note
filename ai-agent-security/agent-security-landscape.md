@@ -65,6 +65,10 @@ Updated at 2026-06-25
 | ZeroClaw | Niche Tool | Privileged process risk, Env variable leakage | Autonomy levels (ReadOnly/Supervised/Full), Multi-backend sandbox | OS별 sandbox 자동 감지 (Landlock/bwrap/Docker/Seatbelt) |
 | Apple Siri / Apple Intelligence | Mobile AI | Privacy risk (문서 내 위협 모델 미공개) | Private Cloud Compute, On-device processing | PCC: 클라우드 처리 시에도 서버 저장 없음 |
 | Apple App Intents | Mobile AI | Unintended execution, Parameter leakage (문서 미확인) | On-device processing, PCC, User consent, Capability scoping | App Intents 기반 agent capability 범위 제한 |
+| OWASP Top 10 Agentic | Security Standard | Agent Goal Hijack, Tool Misuse, Identity Abuse, Supply Chain, RCE, Memory Poisoning, Insecure Comms, Cascading Failures, Trust Exploitation, Rogue Agents | Least privilege, HITL, Sandbox, mTLS, Circuit breaker, SBOM/AIBOM, Behavioral monitoring | ASI01-ASI10; 10개 agentic AI 특화 위협 정의 (2025.12) |
+| MITRE ATLAS | Security Framework | Adversarial ML, Data Poisoning, Model Extraction, Prompt Injection, Supply Chain | ATLAS Navigator, Arsenal (CALDERA), AI Incident Sharing, Threat Modeling | 16 tactics / 84 techniques; ATT&CK 기반 AI 특화 확장 (v5.4.0) |
+| NIST AI RMF | Governance Framework | Trustworthiness gaps, AI bias, Supply chain risk, Generative AI risks | Govern / Map / Measure / Manage 4 functions, AI RMF Playbook | 자발적 지침; AI 전체 생애주기 리스크 관리 |
+| CSA MAESTRO | Threat Modeling Framework | Cross-layer attacks, RAG poisoning, Supply chain, Lateral movement, Goal misalignment | 7-layer decomposition, Defense in depth, Adversarial training, Red teaming | 7계층 아키텍처 기반 agentic AI 위협 모델링 |
 
 ---
 
@@ -72,8 +76,9 @@ Updated at 2026-06-25
 
 각 플랫폼이 공식 문서에서 명시적으로 다루는 위협 유형.
 
-**범례**: o = 명시적 다룸, x = 언급 없음, △ = 간접 언급
+**범례**: o = 명시적 다룸, x = 언급 없음, △ = 간접 언급, - = 해당 없음(표준/프레임워크) 
 
+**위협 커버리지**
 | Platform | Prompt Injection | Indirect PI | Jailbreak | Data Exfiltration | Code Exec Risk | MCP Risk | Memory/State Poisoning | Hallucination |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | OpenAI Agents SDK | o | o | x | o | x | o | x | x |
@@ -107,10 +112,73 @@ Updated at 2026-06-25
 | ZeroClaw | x | x | x | o | o | x | x | x |
 | Apple Siri / Intelligence | x | x | x | △ | x | x | x | x |
 | Apple App Intents | x | x | x | △ | x | x | x | x |
+| OWASP Top 10 Agentic | o | o | x | x | o | x | o | x |
+| MITRE ATLAS | o | o | x | o | △ | x | o | x |
+| NIST AI RMF | △ | △ | △ | △ | △ | △ | △ | △ |
+| CSA MAESTRO | o | △ | x | x | o | o | o | x |
+
+**위협 커버리지 대응 방식**
+
+각 플랫폼이 해당 위협에 어떤 방식으로 대응하는지 구체적인 메커니즘을 표시. `-`는 해당 위협을 다루지 않음.
+
+| Platform | Prompt Injection | Indirect PI | Jailbreak | Data Exfiltration | Code Exec Risk | MCP Risk | Memory/State Poisoning | Hallucination |
+|---|---|---|---|---|---|---|---|---|
+| OpenAI Agents SDK | Guardrail library | Structured output | - | Tool approval | - | Tool approval | - | - |
+| OpenAI Codex | Approval policy | Approval policy | - | Domain allowlist | Seatbelt/bwrap sandbox | - | - | - |
+| Google ADK | Model Armor | Secure Sandwich pattern | - | VPC-SC | Sandbox | - | - | Gemini content filter |
+| MS Agent Framework | Input allow-listing | IFC | - | Parameterized query | - | - | - | High-risk tool gate |
+| MS Foundry Agent Service | Prompt Shields | Spotlighting + Document Shields | - | RBAC | - | - | - | - |
+| MS AI Security Guidance | Defense-in-depth | IFC + Critic agent | - | Zero Trust | - | - | - | - |
+| MS AutoGen / Magentic-One | Docker isolation | - | - | Log monitoring | - | - | - | - |
+| LangChain / LangGraph | Deterministic + model-based guardrail | - | - | HITL hooks | - | - | - | Model-based guardrail |
+| Deep Agents (JS) | Sandbox | - | - | Network proxy | Sandbox | - | - | - |
+| Deep Agents Code (Python) | - | - | - | - | Shell allowlist (-S), Execution budget | - | - | - |
+| CrewAI | JSON schema validation | - | - | Least privilege | - | JSON schema validation | - | - |
+| Amazon Bedrock Agents | Guardrails, Pre-processing prompt | Advanced Prompts | - | - | - | - | - | - |
+| Amazon Bedrock AgentCore | Input validation | - | - | - | - | - | KMS 암호화 | - |
+| Anthropic Claude API | Harmlessness screen (Haiku) | JSON encoding | Harmlessness screen | - | - | - | - | - |
+| Anthropic Claude Code | Allowlist | - | - | Permission architecture | - | Allowlist | - | - |
+| GitHub Copilot Cloud Agent | CodeQL, Secret scanning | - | - | HITL, Org-level guardrail | CodeQL | - | - | - |
+| GitHub Copilot Agents | - | - | - | - | Per-agent-type control | - | - | Responsible AI 6원칙 |
+| Salesforce Agentforce | Einstein Trust Layer | - | - | Model Containment | - | - | - | AUP |
+| Salesforce Prompt Injection | Prompt injection detection | Einstein Trust Layer | - | Audit logging | - | - | - | - |
+| IBM watsonx Orchestrate | Red-teaming | - | Adversarial scenario simulation | - | - | - | - | - |
+| IBM watsonx Guardrails | - | - | - | - | - | - | - | - |
+| MCP | Per-client consent | - | - | Token audience validation | - | Session binding | - | - |
+| NVIDIA NeMo Guardrails | - | - | Nemotron Jailbreak Detect | Topic Control | - | - | - | Content filter |
+| NVIDIA NeMo Jailbreak | - | - | Perplexity heuristic + Random Forest | - | - | - | - | - |
+| Meta LlamaFirewall | PromptGuard 2 | PromptGuard 2 | AlignmentCheck | - | CodeShield | - | - | - |
+| Meta PurpleLlama | PromptGuard | Llama Guard 3 | PromptGuard | - | CodeShield | - | - | - |
+| OpenClaw Gateway | Deny-by-default tool policy | Session isolation | - | Audit | - | - | - | - |
+| OpenClaw CLI | DM hardening | - | - | Suppression framework | - | - | - | - |
+| ZeroClaw | - | - | - | Autonomy levels | Multi-backend sandbox | - | - | - |
+| Apple Siri / Intelligence | - | - | - | (Private Cloud Compute) | - | - | - | - |
+| Apple App Intents | - | - | - | (On-device processing) | - | - | - | - |
+| OWASP Top 10 Agentic | Input sanitization (ASI01) | Least privilege (ASI01) | - | - | Sandbox (ASI05) | - | Scan-before-write (ASI06) | - |
+| MITRE ATLAS | AML.T0051 문서화 | ATLAS Navigator 매핑 | - | AML.TA0013 mitigation | (AML.TA0005) | - | AML.T0020 mitigation | - |
+| NIST AI RMF | (Map function) | (Map function) | (Measure function) | (Map function) | (Map function) | (Map function) | (Map function) | (Measure function) |
+| CSA MAESTRO | Layer 1/3 controls | Layer 1 controls | - | - | Layer 4 controls | Layer 7 controls | Layer 2 controls | - |
+
+**위협 유형별 주요 대응 패턴**
+
+| 위협 유형 | 주요 대응 Guardrail | 대표 구현 예시 |
+|---|---|---|
+| Prompt Injection | Input Filter, Content Filter Model | Bedrock Guardrails, MS Prompt Shields, NeMo PromptGuard, LlamaFirewall PromptGuard 2 |
+| Indirect PI | Spotlighting, IFC (Information Flow Control), Context isolation | MS Spotlighting, Google "Secure Sandwich", MS IFC (Indirect injection Filter + Critic agent) |
+| Jailbreak | Content Filter Model, Perplexity heuristic | Anthropic Harmlessness screen, NeMo Jailbreak Detect (Arctic + Random Forest), LlamaFirewall AlignmentCheck |
+| Data Exfiltration | Access Control (least privilege), Sandbox (network isolation), Output validation | OpenAI Codex Domain allowlist, Claude Code network sandbox, ZeroClaw autonomy levels |
+| Code Exec Risk | Sandbox (isolated execution), HITL (approval gate), Shell allowlist | OpenAI Codex Seatbelt/bwrap, Claude Code sandboxed bash, Deep Agents Code shell allowlist (-S) |
+| MCP Risk | Input validation (JSON schema), Token audience validation, Per-client consent | CrewAI JSON schema validation, MCP OAuth token binding, MCP Private IP block |
+| Memory/State Poisoning | Memory write validation, Memory segmentation, Provenance tracking | Bedrock AgentCore KMS 암호화, OWASP ASI06 scan-before-write 권고 |
+| Hallucination | HITL (human verification), Structured output, Responsible AI evaluation | OpenAI Structured output, GitHub Copilot Responsible AI 6원칙, Google ADK content filter |
 
 ---
 
 ## Guardrail Approach Matrix (가드레일 접근 방식 매트릭스)
+
+각 플랫폼이 공식 문서에서 제공하거나 권고하는 guardrail 구현 메커니즘. Security Standards / Guidelines 항목은 직접 구현 메커니즘을 제공하지 않으므로 `-`로 표시.
+
+**범례**: o = 명시적 제공/권고, x = 언급 없음, △ = 간접 언급, - = 해당 없음(표준/프레임워크)
 
 | Platform | Input Filter | Sandbox | HITL | Content Filter Model | Access Control | Audit Log | Security Eval / Red-team |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -145,6 +213,10 @@ Updated at 2026-06-25
 | ZeroClaw | x | o | x | x | o | o | x |
 | Apple Siri / Intelligence | x | x | x | x | o | x | x |
 | Apple App Intents | x | x | o | x | o | x | x |
+| OWASP Top 10 Agentic | - | - | - | - | - | - | - |
+| MITRE ATLAS | - | - | - | - | - | - | - |
+| NIST AI RMF | - | - | - | - | - | - | - |
+| CSA MAESTRO | - | - | - | - | - | - | - |
 
 ---
 
@@ -153,17 +225,21 @@ Updated at 2026-06-25
 **Prompt injection 커버리지**
 - 31개 플랫폼 중 22개(71%)가 direct prompt injection을 명시적으로 다룸
 - Indirect prompt injection은 13개(42%)에서만 명시적으로 다룸 - agent 특화 위협임에도 상대적으로 커버리지 낮음
+- OWASP Top 10 Agentic(ASI01 Agent Goal Hijack), MITRE ATLAS(AML.T0051)가 prompt injection을 핵심 위협으로 명시
 
 **Sandbox 격리**
 - Sandbox를 제공하는 플랫폼: OpenAI Codex, Google ADK, MS AutoGen, Deep Agents (JS/Python), Anthropic Claude Code, OpenClaw Gateway, ZeroClaw
 - Cloud-hosted 플랫폼은 인프라 격리에 의존하고 별도 sandbox 문서를 제공하지 않는 경향
+- OWASP Top 10 Agentic은 ASI05(RCE)에서 sandbox 실행 격리를 핵심 완화 전략으로 권고
 
 **Human-in-the-Loop (HITL)**
 - HITL을 공식 guardrail로 언급한 플랫폼: 17개(55%)
 - 코딩 agent 계열(Codex, Deep Agents Code, Claude Code, GitHub Copilot)에서 특히 강조
+- OWASP Top 10 Agentic은 ASI01/ASI09에서 고영향 작업 전 인간 승인을 명시적으로 요구
 
 **보안 특화 플랫폼 vs 일반 프레임워크**
 - NVIDIA NeMo, Meta LlamaFirewall, Meta PurpleLlama는 보안만을 목적으로 설계된 도구; 다른 플랫폼에 레이어로 추가 가능
+- OWASP Top 10 Agentic / MITRE ATLAS / NIST AI RMF / CSA MAESTRO는 플랫폼 독립적인 표준/프레임워크로, 위 모든 플랫폼에 적용 가능
 - 일반 프레임워크(LangChain, CrewAI, AutoGen)는 보안 기능이 상대적으로 제한적이며 외부 guardrail 통합을 권장
 
 **문서 접근 불가 / 미확인 항목**
@@ -207,6 +283,10 @@ Updated at 2026-06-25
 | ZeroClaw                              | [https://github.com/zeroclaw-labs/zeroclaw/blob/master/docs/book/src/security/overview.md](https://github.com/zeroclaw-labs/zeroclaw/blob/master/docs/book/src/security/overview.md) ([GitHub][39])                                                                        | [https://github.com/zeroclaw-labs/zeroclaw/blob/master/docs/book/src/security/sandboxing.md](https://github.com/zeroclaw-labs/zeroclaw/blob/master/docs/book/src/security/sandboxing.md) ([GitHub][40])                                                                         |
 | Apple Siri / Apple Intelligence       | [https://support.apple.com/en-eg/guide/iphone/iphe3f499e0e/ios](https://support.apple.com/en-eg/guide/iphone/iphe3f499e0e/ios) ([애플 지원][41])                                                                                                                               | [https://security.apple.com/documentation/private-cloud-compute](https://security.apple.com/documentation/private-cloud-compute) ([Apple Security Research][42])                                                                                                                |
 | Apple App Intents                     | [https://developer.apple.com/documentation/appintents](https://developer.apple.com/documentation/appintents) ([Apple Developer][43])                                                                                                                                       | [https://developer.apple.com/apple-intelligence/](https://developer.apple.com/apple-intelligence/) ([Apple Developer][44])                                                                                                                                                      |
+| OWASP Top 10 for Agentic Applications | [https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/](https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/) ([OWASP GenAI][45])                                                                                   | [https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/](https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/) ([OWASP GenAI][45])                                                                                       |
+| MITRE ATLAS                           | [https://atlas.mitre.org/](https://atlas.mitre.org/) ([MITRE ATLAS][46])                                                                                                                                                                                                   | [https://atlas.mitre.org/](https://atlas.mitre.org/) ([MITRE ATLAS][46])                                                                                                                                                                                                       |
+| NIST AI RMF                           | [https://www.nist.gov/itl/ai-risk-management-framework](https://www.nist.gov/itl/ai-risk-management-framework) ([NIST][47])                                                                                                                                                | [https://www.nist.gov/itl/ai-risk-management-framework](https://www.nist.gov/itl/ai-risk-management-framework) ([NIST][47])                                                                                                                                                    |
+| CSA MAESTRO                           | [https://labs.cloudsecurityalliance.org/maestro/](https://labs.cloudsecurityalliance.org/maestro/) ([CSA][48])                                                                                                                                                              | [https://labs.cloudsecurityalliance.org/maestro/](https://labs.cloudsecurityalliance.org/maestro/) ([CSA][48])                                                                                                                                                                  |
 
 ## 
 
@@ -243,6 +323,10 @@ Updated at 2026-06-25
 - [ZeroClaw](articles/zeroclaw_safety.md)
 - [Apple Siri / Apple Intelligence](articles/apple_siri_apple_intelligence_safety.md)
 - [Apple App Intents](articles/apple_app_intents_safety.md)
+- [OWASP Top 10 for Agentic Applications](articles/owasp_top10_agentic_applications.md)
+- [MITRE ATLAS](articles/mitre_atlas.md)
+- [NIST AI RMF](articles/nist_ai_rmf.md)
+- [CSA MAESTRO](articles/csa_maestro.md)
 
 
 [1]: https://developers.openai.com/api/docs/guides/agent-builder-safety?utm_source=chatgpt.com "Safety in building agents | OpenAI API"
@@ -289,3 +373,7 @@ Updated at 2026-06-25
 [42]: https://security.apple.com/documentation/private-cloud-compute?utm_source=chatgpt.com "Private Cloud Compute Security Guide | Documentation"
 [43]: https://developer.apple.com/documentation/appintents?utm_source=chatgpt.com "App Intents | Apple Developer Documentation"
 [44]: https://developer.apple.com/apple-intelligence/?utm_source=chatgpt.com "Apple Intelligence - Apple Developer"
+[45]: https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/ "OWASP Top 10 for Agentic Applications 2026"
+[46]: https://atlas.mitre.org/ "MITRE ATLAS™"
+[47]: https://www.nist.gov/itl/ai-risk-management-framework "AI Risk Management Framework | NIST"
+[48]: https://labs.cloudsecurityalliance.org/maestro/ "Welcome to MAESTRO - CSA"
