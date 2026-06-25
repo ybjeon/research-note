@@ -1,0 +1,384 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Don't like 10pt? Try 11pt or 12pt
+\documentclass[10pt]{article}
+
+% This is a helpful package that puts math inside length specifications
+\usepackage{calc}
+\usepackage{kotex}
+\usepackage{tikz}
+
+% Simpler bibsection for CV sections
+% (thanks to natbib for inspiration)
+\makeatletter
+\newlength{\bibhang}
+\setlength{\bibhang}{1em}
+\newlength{\bibsep}
+ {\@listi \global\bibsep\itemsep \global\advance\bibsep by\parsep}
+\newenvironment{bibsection}%
+        {\vspace{-\baselineskip}\begin{list}{}{%
+       \setlength{\leftmargin}{\bibhang}%
+       \setlength{\itemindent}{-\leftmargin}%
+       \setlength{\itemsep}{\bibsep}%
+       \setlength{\parsep}{\z@}%
+        \setlength{\partopsep}{0pt}%
+        \setlength{\topsep}{0pt}}}
+        {\end{list}\vspace{-.6\baselineskip}}
+\makeatother
+
+% Layout: Puts the section titles on left side of page
+\reversemarginpar
+
+%
+%         PAPER SIZE, PAGE NUMBER, AND DOCUMENT LAYOUT NOTES:
+%
+% The next \usepackage line changes the layout for CV style section
+% headings as marginal notes. It also sets up the paper size as either
+% letter or A4. By default, letter was used. If A4 paper is desired,
+% comment out the letterpaper lines and uncomment the a4paper lines.
+%
+% As you can see, the margin widths and section title widths can be
+% easily adjusted.
+%
+% ALSO: Notice that the includefoot option can be commented OUT in order
+% to put the PAGE NUMBER *IN* the bottom margin. This will make the
+% effective text area larger.
+%
+% IF YOU WISH TO REMOVE THE ``of LASTPAGE'' next to each page number,
+% see the note about the +LP and -LP lines below. Comment out the +LP
+% and uncomment the -LP.
+%
+% IF YOU WISH TO REMOVE PAGE NUMBERS, be sure that the includefoot line
+% is uncommented and ALSO uncomment the \pagestyle{empty} a few lines
+% below.
+%
+
+%% Use these lines for letter-sized paper
+\usepackage[paper=letterpaper,
+            %includefoot, % Uncomment to put page number above margin
+            marginparwidth=1.2in,     % Length of section titles
+            marginparsep=.05in,       % Space between titles and text
+            margin=1in,               % 1 inch margins
+            includemp]{geometry}
+
+%% Use these lines for A4-sized paper
+%\usepackage[paper=a4paper,
+%            %includefoot, % Uncomment to put page number above margin
+%            marginparwidth=30.5mm,    % Length of section titles
+%            marginparsep=1.5mm,       % Space between titles and text
+%            margin=25mm,              % 25mm margins
+%            includemp]{geometry}
+
+%% More layout: Get rid of indenting throughout entire document
+\setlength{\parindent}{0in}
+
+%% This gives us fun enumeration environments. compactitem will be nice.
+\usepackage{paralist}
+
+%% Reference the last page in the page number
+%
+% NOTE: comment the +LP line and uncomment the -LP line to have page
+%       numbers without the ``of ##'' last page reference)
+%
+% NOTE: uncomment the \pagestyle{empty} line to get rid of all page
+%       numbers (make sure includefoot is commented out above)
+%
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+%\pagestyle{empty}      % Uncomment this to get rid of page numbers
+\fancyhf{}\renewcommand{\headrulewidth}{0pt}
+\fancyfootoffset{\marginparsep+\marginparwidth}
+\newlength{\footpageshift}
+\setlength{\footpageshift}
+          {0.5\textwidth+0.5\marginparsep+0.5\marginparwidth-2in}
+\lfoot{\hspace{\footpageshift}%
+       \parbox{4in}{\, \hfill %
+                    \arabic{page} of \protect\pageref*{LastPage} % +LP
+%                    \arabic{page}                               % -LP
+                    \hfill \,}}
+
+% Finally, give us PDF bookmarks
+\usepackage{color,hyperref}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.3}
+\hypersetup{colorlinks,breaklinks,
+            linkcolor=darkblue,urlcolor=darkblue,
+            anchorcolor=darkblue,citecolor=darkblue}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The title (name) with a horizontal rule under it
+%
+% Usage: \makeheading{name}
+%
+% Place at top of document. It should be the first thing.
+\newcommand{\makeheading}[1]%
+        {\hspace*{-\marginparsep minus \marginparwidth}%
+         \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
+                {\large \bfseries #1}\\[-0.15\baselineskip]%
+                 \rule{\columnwidth}{1pt}%
+         \end{minipage}}
+
+% The section headings
+%
+% Usage: \section{section name}
+%
+% Follow this section IMMEDIATELY with the first line of the section
+% text. Do not put whitespace in between. That is, do this:
+%
+%       \section{My Information}
+%       Here is my information.
+%
+% and NOT this:
+%
+%       \section{My Information}
+%
+%       Here is my information.
+%
+% Otherwise the top of the section header will not line up with the top
+% of the section. Of course, using a single comment character (%) on
+% empty lines allows for the function of the first example with the
+% readability of the second example.
+\renewcommand{\section}[2]%
+        {\pagebreak[2]\vspace{1.3\baselineskip}%
+         \phantomsection\addcontentsline{toc}{section}{#1}%
+         \hspace{0in}%
+         \marginpar{
+         \raggedright \scshape #1}#2}
+
+% An itemize-style list with lots of space between items
+\newenvironment{outerlist}[1][\enskip\textbullet]%
+        {\begin{itemize}[#1]}{\end{itemize}%
+         \vspace{-.6\baselineskip}}
+
+% An environment IDENTICAL to outerlist that has better pre-list spacing
+% when used as the first thing in a \section
+\newenvironment{lonelist}[1][\enskip\textbullet]%
+        {\vspace{-\baselineskip}\begin{list}{#1}{%
+        \setlength{\partopsep}{0pt}%
+        \setlength{\topsep}{0pt}}}
+        {\end{list}\vspace{-.6\baselineskip}}
+
+% An itemize-style list with little space between items
+\newenvironment{innerlist}[1][\enskip\textbullet]%
+        {\begin{compactitem}[#1]}{\end{compactitem}}
+
+% An environment IDENTICAL to innerlist that has better pre-list spacing
+% when used as the first thing in a \section
+\newenvironment{loneinnerlist}[1][\enskip\textbullet]%
+        {\vspace{-\baselineskip}\begin{compactitem}[#1]}
+        {\end{compactitem}\vspace{-.6\baselineskip}}
+
+% To add some paragraph space between lines.
+% This also tells LaTeX to preferably break a page on one of these gaps
+% if there is a needed pagebreak nearby.
+\newcommand{\blankline}{\quad\pagebreak[2]}
+\input{profile.tex}
+
+% Uses hyperref to link DOI
+\newcommand\doilink[1]{\href{http://dx.doi.org/#1}{#1}}
+\newcommand\doi[1]{doi:\doilink{#1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Begin CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\makeheading{Youngbae Jeon \hfill \small{ver. June 26, 2026}}
+
+%%%%%%% TODAY auto mark
+% \begin{tikzpicture}[remember picture,overlay]
+%       \node[anchor=north, yshift=-0.25cm] at (current page.north) {\textit{Last update: January 12, 2023}};
+% \end{tikzpicture}
+
+\section{Introduction}
+\textbf{Youngbae Jeon} is a staff engineer at Samsung Electronics. His research interests include information security applications based on artificial intelligence and signal processing. He received the B.S. degree in electrical and electronics engineering from Yonsei University and the Ph.D. degree in information security at Korea University. 
+
+\section{Contact Information}
+%
+% NOTE: Mind where the & separators and \\ breaks are in the following
+%       table.
+%
+% ALSO: \rcollength is the width of the right column of the table
+%       (adjust it to your liking; default is 1.85in).
+%
+\newlength{\rcollength}\setlength{\rcollength}{1.85in}%
+%
+\begin{tabular}[t]{@{}p{\textwidth-\rcollength}p{\rcollength}}
+\ybafilll & \textit{Cell:} +82-10-2480-1394\\
+\ybafill & \textit{E-mail:} \href{\ybemail}{\ybemail}\\
+\ybafil	& \textit{Webpage:} \ybweb \\
+\ybafiladdr  & \textit{Github:} \href{http://github.com/ybjeon}{@ybjeon}\\
+\ybwmail &   \\ 
+ORCID: \yborcid & \\
+             
+\end{tabular}
+
+\section{Citizenship}
+Republic of Korea
+
+\section{Research Interests}
+%
+Information security based on artificial intelligence and signal processing: \\
+biometrics, authentication, physical layer security, fraud/forgery detection, multimedia forensics
+
+
+\section{Education}
+
+\begin{bibsection}
+    \item \href{http://www.korea.ac.kr/}{\textbf{Korea University}}, Seoul, Korea. \hfill \textbf{February 2022}\\
+    \textbf{Ph.D. program}, \href{http://gss.korea.ac.kr/} {Department of Information Security}.
+    \begin{innerlist}
+        \item Thesis Title: \emph{Representation learning-based frequency domain analysis for information security}
+    \end{innerlist}
+    
+    \item \href{http://www.korea.ac.kr/}{\textbf{Korea University}}, Seoul, Korea. \hfill \textbf{February 2018}\\
+    \textbf{M.S. Information Security}
+    \begin{innerlist}
+        \item Thesis Title: \emph{Inferring user location with electrical network frequency}
+    \end{innerlist}
+    
+    \item \href{http://www.yonsei.ac.kr/}{\textbf{Yonsei University}}, Seoul, Korea. \hfill \textbf{February 2014}\\
+    \textbf{B.S. Electrical and Electronics Engineering}
+            
+    \item \href{https://www.gs.hs.kr/}{\textbf{Gyeonggi Science High School}} \hfill \textbf{February 2010}
+    \begin{innerlist}
+            \item Thesis Title: \emph{Distributed authentication system using ECC}
+        \end{innerlist}
+
+\end{bibsection}
+\blankline
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Publications (international)} \begin{bibsection}
+
+      \item Kang Hoon Lee, \textbf{Youngbae Jeon}, Ji Won Yoon, \textbf{``Faster Homomorphic DFT and Speech Analysis for Torus Fully Homomorphic Encryption''}, IEEE Euro S\&P \textbf{2024}
+
+      \item Hyunsoo Kim, \textbf{Youngbae Jeon}, Ji Won Yoon, \textbf{``Invasion of location privacy using online map services and smartphone sensors''}, AsiaCCS \textbf{2023}
+
+      \item Il-Youp Kwak, Sungsu Kwag, Junhee Lee, \textbf{Youngbae Jeon}, Jeonghwan Hwang, Hyo-Jung Choi, Jong-Hoon Yang, So-Yul Han, Jun Ho Huh, Choong-Hoon Lee, Ji Won Yoon, \textbf{``Detecting Voice Spoofing Attacks using Residual Network, Max Feature Map, and Depthwise Separable Convolution''}, IEEE ACCESS, \textbf{2023}
+    
+      \item HyeKyung Han, \textbf{Youngbae Jeon}, Ji Won Yoon, "A Phase-based Approach for ENF Signal Extraction from Rolling Shutter Videos" IEEE Signal Processing Letters, \textbf{2022} 
+
+      \item \textbf{Youngbae Jeon}, HyeKyung Han, Ji Won Yoon, \textbf{``Manifold Learning-based Frequency Estimation for extracting ENF signal from digital video''} International Conference on Pattern Recognition, ICPR \textbf{2022}
+
+	 \item \textbf{Youngbae Jeon}, Ji Hyuk Jung, Ji Won Yoon, \textbf{``Efficient Correlation Power Analysis (CPA) focusing on byte-wise calculation points.''}, IEEE ACCESS, 2021
+	
+     \item HyeKyung Han, KangHoon Lee, \textbf{Youngbae Jeon}, Ji Won Yoon, \textbf{``Comparison of various interpolation techniques to infer localization of audio files using ENF signals''}, \emph{International Conference on Software Security and Assurance \textbf{(ICSSA)}}, Best Paper Award, \textbf{2020}. 
+
+	\item \textbf{Youngbae Jeon}, Ji Won Yoon,  \href{https://link.springer.com/chapter/10.1007/978-3-030-65299-9_29}{\textbf{``Filtering-based Correlation Power Analysis (CPA) with signal envelopes against shuffling methods''}} \emph{The 21st World Conference on Information Security Applications (\textbf{WISA})}, Best Paper Award, \textbf{2020}
+	
+	\item Il-Youp Kwak, Sungsu Kwag, Junhee Lee, Jun Ho Huh, Choong-Hoon Lee, \textbf{Youngbae Jeon}, Jeonghwan Hwang, Ji Won Yoon, \textbf{``ResMax: Detecting Voice Spoofing Attacks withResidual Network and Max Feature Map''}, International Conference on Pattern Recognition (ICPR), \textbf{2020}
+	
+	\item \textbf{Youngbae Jeon}, Minchul Kim, Hyunsoo Kim, Hyoungshick Kim, Jun Ho Huh and Ji Won Yoon, \textbf{``I'm Listening to your Location! Inferring User Location with Acoustic Side Channel''}, \emph{Conference on World Wide Web} (\textbf{WWW}), \textbf{2018}
+	
+	\item Hyunsoo Kim, \textbf{Youngbae Jeon} and Ji Won Yoon, \textbf{``Construction of a National Scale ENF map using online multimedia data''}, ACM International Conference on Information and Knowledge Management (\textbf{CIKM}), \textbf{2017}
+		
+\end{bibsection}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Projects (Research)}
+\textbf{Korea University}, as graduate student. \hfill \textbf{2016 - 2021}
+\begin{innerlist}
+\item A study on SW modification impact analysis and process monitoring/evaluating model, \href{https://www.kepri.re.kr:20808/index}{\textbf{KEPCO Research Institute}}, 2016.09 - 2017.09
+\item Research on scanning network information in cyberwar, \href{https://www.lignex1.com/}{\textbf{LIG Nex1}}, 2017
+\item Wired and Wireless network protocol reverse engineering, \href{https://www.lignex1.com/}{\textbf{LIG Nex1}}, 2018
+\item Robust object detection in satellite images, \href{https://www.kari.re.kr/eng.do}{\textbf{KARI}}, 2019
+\item Voice presentation attack detection and authentication, \href{https://research.samsung.com/}{\textbf{Samsung Research}}, 2019
+\item Collecting electric network frequencies from online multimedia services, \href{https://www.darpa.mil/}{\textbf{DARPA}} \& \href{https://www.rtx.com/}{\textbf{Raytheon technologies}} (USA), 2020
+\item Research on spatial ENF reconstruction based on interpolation, \href{https://www.add.re.kr/eps}{\textbf{ADD}}, 2020
+\item Wireless covert channel detection and analysis, \href{https://www.iitp.kr/main.it}{\textbf{IITP}} \& \href{https://www.etri.re.kr/eng/main/main.etri}{\textbf{ETRI}}, 2020 - 2021
+\item Implementing encrypted fast Fourier transform for speech processing, \href{https://www.iitp.kr/main.it}{\textbf{IITP}}, 2021
+\item Other minor projects including forensics and machine learning. 
+\end{innerlist}
+
+\blankline
+
+\section{Patents}
+\begin{bibsection}
+    \item \textbf{Youngbae Jeon}, Ji Won Yoon, ``Method and device for preventing unauthorized audio recording, and method and device for restoring original recording'', Korea-Application No. 10-2019-0106745. Korea-registration No. 10-2257361.
+    \item Ji Won Yoon, Woorim Bang, \textbf{Youngbae Jeon}, Shinwoo Shim, Tae Kyu Kim, Sung Goo Jun, ``Method and apparatus for automatic analysis for wireless protocol'', Korea-Application No. 10-2019-0012995. Korea-registration No. 10-2014234.
+    \item Hyunsoo Kim, \textbf{Youngbae Jeon}, Ji Won Yoon, ``Method and device for collecting electrical network frequency signal from online media'', Korea-Application No. 10-2016-0091101. Korea-registration No. 10-1795483.
+    \item \textbf{Youngbae Jeon}, Hye Kyung Han, Ji Won Yoon, ``PCA-based ENF extraction method from video'', Korea-Application No. 10-2021-0105895.
+    \item KangHoon Lee, \textbf{Youngbae Jeon}, Ji Won Yoon, ``A method for encrypting real number time-series data and applying discrete Fourier transform with homomorphic encryption'', Korea-Application No. 10-2021-0080300.
+    \item Hye Kyung Han, \textbf{Youngbae Jeon}, Ji Won Yoon, ``Device and method of capturing image with anti-flicker function'', Korea-Application No. 10-2021-0078669.
+    \item Hye Kyung Han, \textbf{Youngbae Jeon}, Ji Won Yoon, ``Method of estimating ENF through phase change of the sinusoidal wave function modeled on ENF'', Korea-Application No. 10-2021-0078663.
+    \item Ji Hyuk Jung, \textbf{Youngbae Jeon}, Ji Won Yoon, ``Method of extracting electric network frequency'', Korea-Application No. 10-2021-0013501.
+    \item KangHoon Lee, \textbf{Youngbae Jeon}, Ji Won Yoon, ``Methodology for applying machine learning algorithm to encrypted voice data'', Korea-Application No. 10-2020-0174618.
+\end{bibsection}
+
+\blankline
+
+\section{Projects (Others)}
+%
+\href{http://googledevkr.blogspot.kr/2016/01/google-hackfair-2-metamong.html}{\textbf{MetaMong}}, as researcher \& developer. \hfill \textbf{December 2015}
+\begin{innerlist}
+\item Succesful exhibition at \textbf{2015 Google HackFair}, Seoul, Korea,
+\item MetaMong is Android application that retrieves face-lookalikes to the user's selfie.
+\item Managed massive amount of user's selfie dataset, implemented user face recognition with Caffe and TensorFlow. Retrieves face-lookalikes from our selfie dataset.
+\item Interviewed and introduced to official \href{https://developers-kr.googleblog.com/2016/01/google-hackfair-2-metamong.html}{Google Developers Korea Blog}.
+% \item Technical report is published.
+\end{innerlist}
+
+\blankline
+
+\href{https://apkpure.com/\%EC\%96\%8C\%EB\%B6\%81-yambook-\%EC\%8B\%A0\%EC\%B4\%8C-beta/com.scjb.yambook}{\textbf{Yambook}}, as CEO \& developer, \hfill \textbf{May 2014 - December 2015}
+\begin{innerlist}
+\item Store-customer communication SNS application project based on Big-data.
+\item Funded by the Small and Medium Business Administration (SMBA), Korea Government for 50,000,000 ₩.
+\end{innerlist}
+
+\href{http://hpcschool.kr/ksc2013/}{\textbf{Korea Supercomputing Challenge}}, as developer, \hfill \textbf{Oct 2013}
+\begin{innerlist}
+\item Challenges for solving the problems to make computation faster with numeral resources of CPUs and nodes (computer). 
+\item Won 2nd Prize in section of undergraduate competition.
+\end{innerlist}
+
+
+\section{Technical Skills}
+Operating Systems: Linux, Windows\\
+Programming Languages: Python, MATLAB, shell script, C/C$++$, JAVA \\
+% Tools: Torch, PyTorch, docker
+% also have experienced Processing, nodeJS, Django etc.\\
+% and a VIM lover!
+
+
+\section{Languages}
+Korean \& English: fluent\\
+Certificates: \\
+- (English speaking) OPIc: AL
+
+
+% \section{Scholarship}
+% National Science and Technology Scholarship \hfill \textbf{2012 - 2014}
+
+\section{Teaching}
+\href{http://www.korea.ac.kr/}{Korea University}, \textit{Teaching Assistant,} 
+\begin{itemize}
+    \item Lecture 54 (concealed) \hfill 
+        \textbf{March 2016 - June 2016}
+    \item Advanced Digital Forensics \hfill 
+        \textbf{March 2018 - June 2018}
+    \item Advanced Data Science \hfill 
+        \textbf{March 2020 - June 2020}
+    \item Signal and Information Analysis \hfill 
+        \textbf{March 2020 - June 2020}
+\end{itemize}
+
+
+\section{References}
+Prof. Ji Won Yoon \hfill \textit{Email}: \href{jiwon\_yoon@korea.ac.kr}{jiwon\_yoon@korea.ac.kr}
+\begin{innerlist}
+	\item My advisor \& professor in Department of Information Security, Korea University
+\end{innerlist}
+
+\end{document}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% End CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
