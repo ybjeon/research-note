@@ -288,47 +288,6 @@ Updated at 2026-06-25
 | NIST AI RMF                           | [https://www.nist.gov/itl/ai-risk-management-framework](https://www.nist.gov/itl/ai-risk-management-framework) ([NIST][47])                                                                                                                                                | [https://www.nist.gov/itl/ai-risk-management-framework](https://www.nist.gov/itl/ai-risk-management-framework) ([NIST][47])                                                                                                                                                    |
 | CSA MAESTRO                           | [https://labs.cloudsecurityalliance.org/maestro/](https://labs.cloudsecurityalliance.org/maestro/) ([CSA][48])                                                                                                                                                              | [https://labs.cloudsecurityalliance.org/maestro/](https://labs.cloudsecurityalliance.org/maestro/) ([CSA][48])                                                                                                                                                                  |
 
-## 
-
-
-## References
-- [OpenAI Agents SDK](articles/openai_agents_sdk_safety.md)
-- [OpenAI Codex](articles/openai_codex_agent_safety.md)
-- [Google ADK](articles/google_adk_safety.md)
-- [Microsoft Agent Framework](articles/microsoft_agent_framework_safety.md)
-- [Microsoft Foundry Agent Service](articles/microsoft_foundry_agent_service_safety.md)
-- [Microsoft AI Agent Security Guidance](articles/microsoft_ai_agent_security_guidance.md)
-- [Microsoft AutoGen / Magentic-One](articles/microsoft_autogen_magentic_one_safety.md)
-- [LangChain / LangGraph](articles/langchain_langgraph_safety.md)
-- [Deep Agents (JS)](articles/deep_agents_safety.md)
-- [Deep Agents Code (Python)](articles/deep_agents_code_safety.md)
-- [CrewAI](articles/crewai_safety.md)
-- [Amazon Bedrock Agents](articles/amazon_bedrock_agents_safety.md)
-- [Amazon Bedrock AgentCore](articles/amazon_bedrock_agentcore_safety.md)
-- [Anthropic Claude API](articles/anthropic_claude_api_safety.md)
-- [Anthropic Claude Code](articles/anthropic_claude_code_safety.md)
-- [GitHub Copilot Cloud Agent](articles/github_copilot_cloud_agent_safety.md)
-- [GitHub Copilot Agents](articles/github_copilot_agents_safety.md)
-- [Salesforce Agentforce](articles/salesforce_agentforce_safety.md)
-- [Salesforce Prompt Injection Detection](articles/salesforce_prompt_injection_safety.md)
-- [IBM watsonx Orchestrate ADK](articles/ibm_watsonx_orchestrate_safety.md)
-- [IBM watsonx Guardrails](articles/ibm_watsonx_guardrails_safety.md)
-- [Model Context Protocol (MCP)](articles/mcp_security.md)
-- [NVIDIA NeMo Guardrails](articles/nvidia_nemo_guardrails_safety.md)
-- [NVIDIA NeMo Jailbreak Protection](articles/nvidia_nemo_jailbreak_protection.md)
-- [Meta LlamaFirewall](articles/meta_llamafirewall_safety.md)
-- [Meta PurpleLlama / Prompt Guard](articles/meta_prompt_guard_purple_llama.md)
-- [OpenClaw Gateway](articles/openclaw_gateway_safety.md)
-- [OpenClaw CLI](articles/openclaw_cli_safety.md)
-- [ZeroClaw](articles/zeroclaw_safety.md)
-- [Apple Siri / Apple Intelligence](articles/apple_siri_apple_intelligence_safety.md)
-- [Apple App Intents](articles/apple_app_intents_safety.md)
-- [OWASP Top 10 for Agentic Applications](articles/owasp_top10_agentic_applications.md)
-- [MITRE ATLAS](articles/mitre_atlas.md)
-- [NIST AI RMF](articles/nist_ai_rmf.md)
-- [CSA MAESTRO](articles/csa_maestro.md)
-
-
 [1]: https://developers.openai.com/api/docs/guides/agent-builder-safety?utm_source=chatgpt.com "Safety in building agents | OpenAI API"
 [2]: https://openai.github.io/openai-guardrails-python/quickstart/?utm_source=chatgpt.com "Quickstart - OpenAI Guardrails Python"
 [3]: https://developers.openai.com/codex/agent-approvals-security?utm_source=chatgpt.com "Agent approvals & security – Codex"

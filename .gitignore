@@ -4,9 +4,11 @@ CLAUDE.md
 AGENTS.md
 */diagrams/*.png
 */diagrams/*.svg
+*/cache/*
 uv.lock
 
 tmp/
 translate/
 todos.md
 tmp.md
+rules.md
