@@ -60,6 +60,20 @@ git stash clear                 # delete all stashes
 git stash branch <name>         # create a branch from a stash
 ```
 
+## Upstream Tracking
+
+`-u` / `--set-upstream` does two things at once: pushes the branch to the remote and links the local branch to the remote counterpart. After this one-time setup, plain `git push` and `git pull` work without specifying the remote or branch name.
+
+```bash
+git push -u origin <branch>           # push and set upstream (same name)
+git push -u origin local:remote       # push with different local/remote names
+```
+
+Key points:
+- Only needed the first time, or when a branch has no upstream configured yet.
+- Local and remote branch names can differ, but keeping them the same is conventional.
+- Check current upstream: `git branch -vv`
+
 ## Refresh All Branches
 
 Fetch all remotes and prune deleted remote-tracking branches:
