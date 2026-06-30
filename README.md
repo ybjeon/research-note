@@ -37,3 +37,8 @@ Security considerations for AI Agents, including architecture, threats, and atta
 - AI Agent architecture + guideline (Single-agent, Multi-agent)
 - Threat modeling in AI Agents (AIVSS, AARS)
 - Toy projects
+
+## Meta Files
+- [blog.md](blog.md) — Links to blog posts
+- [codes.md](codes.md) — Index of code files and notebooks
+- [links.md](links.md) — Index of all internal `.md` links (valid and dead)
