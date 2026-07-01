@@ -102,3 +102,21 @@ Or with a simpler loop (updates only already-checked-out branch):
 git fetch --all --prune
 git pull --ff-only              # fast-forward current branch only
 ```
+
+## GitHub CLI (gh)
+
+`gh` is the official command line interface (CLI) for GitHub. It lets you perform GitHub operations directly from the terminal, without going through the web UI.
+
+### Key Features
+- **Pull requests**: `gh pr create`, `gh pr list`, `gh pr view`, `gh pr merge`
+- **Issues**: `gh issue create`, `gh issue list`, `gh issue close`
+- **Repositories**: `gh repo clone`, `gh repo create`, `gh repo view`
+- **CI / Workflow (GitHub Actions)**: `gh run list`, `gh run view`
+- **Authentication**: `gh auth login`
+
+### Example
+```bash
+gh pr create --title "fix bug" --body "description"
+gh issue list --label bug
+gh api repos/owner/repo/pulls/123/comments
+```
