@@ -45,7 +45,16 @@ SAGA (Security Architecture for Governing Agentic systems) is a framework propos
 
 ### Threat Model
 
-Six adversarial capabilities (C1-C6) are considered, ranging from malicious registered agents and compromised agents to Sybil attacks and Dolev-Yao network adversaries. The Provider is treated as honest-but-curious.
+The Provider is treated as honest-but-curious: it follows protocol logic but may observe agent metadata and traffic patterns. Six adversarial capabilities (C1-C6) are considered:
+
+| Capability | Description |
+|------------|--------------|
+| C1 | Adversaries can create agents and register them with the Provider. These agents may **deviate from the protocol** when communicating with other agents, or add themselves to a benign agent's contact policy via **social engineering** on users. |
+| C2 | A legitimate agent registered with the Provider can be **compromised** by an adversary, e.g., when interacting with external resources (websites, tools installed on user devices). |
+| C3 | Adversaries may instruct an agent to **self-replicate** on the same device or another user's device **without registering the child agent** with the Provider; the parent agent can share TLS keys, access control keys, and tokens with the child. |
+| C4 | An adversarial agent may **share its TLS public keys, access control keys, and access control tokens** with another adversary-controlled agent, enabling communication with a benign victim agent. |
+| C5 | An adversary could attempt a **Sybil attack** by creating agents with multiple identities. |
+| C6 | An adversary may **overhear, intercept, and synthesize any message**, limited only by the computational hardness of the cryptographic primitives used (**Dolev-Yao network adversary**). |
 
 ### Extensions
 
