@@ -82,6 +82,12 @@ Fetch all remotes and prune deleted remote-tracking branches:
 git fetch --all --prune
 ```
 
+If `git fetch` reports `some local refs could not be updated` (a stale remote-tracking ref conflicts with a renamed/new branch on the remote), prune manually then fetch again:
+
+```bash
+git remote prune origin
+```
+
 To also fast-forward all local branches that track a remote:
 
 ```bash
