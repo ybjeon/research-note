@@ -37,6 +37,11 @@ Risk \approx Likelihood \times Impact
 $$
 - Likelihood depends on the presence of **vulnerabilities** and the capabilities of the **threat** actor.
 
+### Example
+- **Threat (위협)**: Credential stuffing attack using leaked password lists.
+- **Vulnerability (취약점)**: Weak password policy and no MFA enforced.
+- **Risk (위험)**: Account takeover leading to data exposure and service abuse.
+
 ## Threat modeling process comparison
 
 | Approach | Primary Focus | Key Method | Best For |
