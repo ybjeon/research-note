@@ -108,3 +108,26 @@ Traffic direction relative to a network boundary (host, container, VPC, data cen
 - Egress-only internet gateway (AWS) for private subnets that need outbound but must not be reachable inbound.
 - FQDN-based egress rules (rather than IP) to handle CDN / SaaS with dynamic IPs.
 - Alert on unexpected egress destinations as an anomaly detection signal.
+
+## Unlinkability vs Non-targetability
+
+Both are core privacy properties in anonymous communication systems and privacy-by-design engineering.
+
+| Property | Focus | Key Question |
+|---|---|---|
+| Unlinkability (연결불가능성) | Blocking correlation between data items or actions | "Can these two actions be linked to the same person?" |
+| Non-targetability (비표적화성) | Preventing identification/tracking of a specific individual | "Can this person be singled out as a target?" |
+
+**Unlinkability (연결불가능성)**
+- Ensures that two or more items (actions, messages, or identifiers) cannot be correlated with each other or traced back to the same individual.
+- An observer cannot determine whether two events or messages originate from the same user.
+- **LINDDUN** identifies Linkability as one of its seven privacy threat categories; unlinkability is the corresponding countermeasure.
+- Example: In Tor, traffic is routed through multiple relays so that no single party can link the sender to the receiver.
+
+**Non-targetability (비표적화성)**
+- Makes it difficult for an adversary to single out and surveil a specific individual, even if mass observation is possible.
+- The larger the anonymity set, the stronger the non-targetability.
+- Related concepts: k-anonymity, l-diversity.
+- Example: In a well-designed anonymous system, targeting one person among millions requires prohibitive cost or effort.
+
+Both properties are central to privacy by design and are frequently paired in anonymous communication protocols such as Tor and mix networks.
