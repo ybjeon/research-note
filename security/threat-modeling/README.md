@@ -334,54 +334,10 @@ Choose one of the following four response strategies for each threat:
 ### CVSS (Common Vulnerability Scoring System)
 - Industry-standard vulnerability severity scoring system
 - Maintained by **FIRST (Forum of Incident Response and Security Teams)**; current versions are **v3.1** and **v4.0**
-- Score range: **0.0 – 10.0** → mapped to severity levels
+- Score range: **0.0 – 10.0**, layered as Base (intrinsic severity) → Temporal/Threat (current exploit/patch state) → Environmental (deployment context)
+- CVSS measures **severity**, not **risk** — it does not account for threat likelihood or business context
 
-| Score | Severity |
-|-------|----------|
-| 0.0 | None |
-| 0.1 – 3.9 | Low |
-| 4.0 – 6.9 | Medium |
-| 7.0 – 8.9 | High |
-| 9.0 – 10.0 | Critical |
-
-#### Score Components
-
-**Base Score** — intrinsic characteristics of the vulnerability, independent of time or environment
-
-| Metric Group | Metrics |
-|---|---|
-| Exploitability (공격 용이성) | Attack Vector (AV), Attack Complexity (AC), Privileges Required (PR), User Interaction (UI) |
-| Scope (범위) | Scope (S) — whether the vulnerability impacts components beyond its authorization boundary |
-| Impact (영향) | Confidentiality (C), Integrity (I), Availability (A) — each rated None / Low / High |
-
-**Temporal Score** — adjusts Base Score based on current exploit and patch state
-
-| Metric | Description |
-|---|---|
-| Exploit Code Maturity (E) | Whether a working exploit is publicly available (공개 익스플로잇 존재 여부) |
-| Remediation Level (RL) | Whether an official patch or workaround exists (공식 패치 또는 완화책 여부) |
-| Report Confidence (RC) | Confidence in the vulnerability report's accuracy (보고 신뢰도) |
-
-**Environmental Score** — tailors the score to a specific deployment context
-
-- Modifies Base metrics to reflect the actual environment (e.g., a confidentiality-focused system raises the Confidentiality impact weight)
-- Defined by the organization consuming the score, not the vendor
-
-#### Usage Notes
-- CVSS measures **severity**, not **risk** — it does not account for **threat likelihood** or **business context**
-- Use CVSS Base Score for vendor advisories and cross-organization comparison
-- Use Environmental Score for internal prioritization aligned with your asset sensitivity
-- Combine with threat intelligence (e.g., EPSS — Exploit Prediction Scoring System) for a more complete risk picture
-
-| | Base Score | Temporal Score | Environmental Score |
-|---|---|---|---|
-| **What it measures** | Intrinsic severity of the vulnerability itself | Current real-world exploitability and patch state | Severity adjusted to your specific deployment context |
-| **Changes over time?** | No — fixed at disclosure | Yes — changes as exploits appear or patches are released | Yes — changes as your environment changes |
-| **Who defines it?** | Vendor / researcher | Vendor / threat intel | Your organization |
-| **Key inputs** | AV, AC, PR, UI, Scope, C/I/A impact | Exploit maturity (E), Remediation level (RL), Report confidence (RC) | Modified Base metrics + asset sensitivity weights |
-| **Typical use** | Cross-org comparison, vendor advisories, NVD entries | Urgency decisions ("is there a public exploit yet?") | Internal prioritization aligned to your asset value |
-
-In practice: start with the **Base Score** for a vendor-neutral severity baseline → apply the **Temporal Score** to factor in whether a working exploit or patch exists right now → apply the **Environmental Score** to reflect how critical the affected asset actually is in your environment. Each layer narrows from "how bad is this vulnerability in general?" to "how urgent is this for us, today?"
+See [CVSS](cvss.md) for metric definitions, vector string format, v3.1 vs v4.0 differences, and a worked example.
 
 ## Summary 
 ### Relationships

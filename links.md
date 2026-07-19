@@ -35,6 +35,8 @@
 | [security/README.md](security/README.md) | [security/overview.md](security/overview.md) |
 | [security/README.md](security/README.md) | [security/threat-modeling/README.md](security/threat-modeling/README.md) |
 | [security/README.md](security/README.md) | [security/threat-modeling/ms-threat-modeling-tool.md](security/threat-modeling/ms-threat-modeling-tool.md) |
+| [security/README.md](security/README.md) | [security/threat-modeling/cvss.md](security/threat-modeling/cvss.md) |
+| [security/threat-modeling/README.md](security/threat-modeling/README.md) | [security/threat-modeling/cvss.md](security/threat-modeling/cvss.md) |
 | [ai-agent-security/agent-oauth.md](ai-agent-security/agent-oauth.md) | [security/oauth.md](security/oauth.md) |
 | [security/terms.md](security/terms.md) | [security/access-control.md](security/access-control.md) |
 
