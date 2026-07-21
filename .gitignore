@@ -4,7 +4,7 @@ CLAUDE.md
 AGENTS.md
 */diagrams/*.png
 */diagrams/*.svg
-*/cache/*
+cache/
 uv.lock
 
 tmp/
