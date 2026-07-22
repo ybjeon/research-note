@@ -39,6 +39,7 @@
 | [security/threat-modeling/README.md](security/threat-modeling/README.md) | [security/threat-modeling/cvss.md](security/threat-modeling/cvss.md) |
 | [ai-agent-security/agent-oauth.md](ai-agent-security/agent-oauth.md) | [security/oauth.md](security/oauth.md) |
 | [security/terms.md](security/terms.md) | [security/access-control.md](security/access-control.md) |
+| [ai-agent-security/threat-modeling/owasp-top-10-for-llm-applications.md](ai-agent-security/threat-modeling/owasp-top-10-for-llm-applications.md) | [ai-agent-security/threat-modeling/owasp-top10-agentic-applications.md](ai-agent-security/threat-modeling/owasp-top10-agentic-applications.md) |
 
 ## Dead Links
 
