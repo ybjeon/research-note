@@ -1,0 +1,5 @@
+# Hidden from ripgrep-based file search and Claude Code @ file suggestions.
+# Independent of .gitignore: papers/, summary/, cache/, translate/ stay visible.
+.venv/
+__pycache__/
+.git/
