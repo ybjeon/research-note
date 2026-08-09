@@ -1,6 +1,16 @@
 # Terms in Security
 
+Glossary of security terms that recur across the notes in this folder. Each entry contrasts a pair of terms that are easily confused.
+
 ## List
+
+| Term | Summary |
+|------|---------|
+| [Permission vs Access Control](#permission-vs-access-control) | A single granted right vs the system that defines and enforces rights |
+| [Token](#token) | Access token vs refresh token, their lifetimes and handling |
+| [Ingress / Egress](#ingress--egress) | Inbound vs outbound traffic across a network boundary |
+| [Unlinkability vs Non-targetability](#unlinkability-vs-non-targetability) | Blocking correlation vs preventing an individual from being singled out |
+| [SIEM vs SOC](#siem-vs-soc) | The log aggregation platform vs the team that operates it |
 
 ## Permission vs Access Control
 
@@ -131,3 +141,36 @@ Both are core privacy properties in anonymous communication systems and privacy-
 - Example: In a well-designed anonymous system, targeting one person among millions requires prohibitive cost or effort.
 
 Both properties are central to privacy by design and are frequently paired in anonymous communication protocols such as Tor and mix networks.
+
+## SIEM vs SOC
+
+| Term | Nature | Role |
+|------|--------|------|
+| SIEM (보안 정보 및 이벤트 관리) | Platform / tool | Aggregates logs from the whole organization, correlates them, and raises alerts |
+| SOC (보안 관제 센터) | Organization / team | Operates the SIEM around the clock, triages alerts, and drives incident response |
+
+**SIEM (Security Information and Event Management)**
+
+The name is the merger of two older product categories.
+
+- **SIM (Security Information Management)**: collect, normalize, and retain logs for long-term search and reporting.
+- **SEM (Security Event Management)**: correlate events in real time and raise alerts.
+
+**Pipeline**
+
+| Stage | Description |
+|-------|-------------|
+| Collect | Ingest logs from firewalls, servers, endpoints, IdP, SaaS, and cloud audit trails |
+| Normalize | Convert vendor-specific formats into a common schema |
+| Correlate | Join events across sources with rules (e.g., 20 failed VPN logins, then a success, then a bulk download) |
+| Alert | Emit an alert when a rule matches and route it to the SOC |
+| Investigate | Reconstruct a timeline from retained logs after an incident |
+| Report | Produce audit reports for compliance regimes (PCI-DSS, ISMS, etc.) |
+
+Common products: Splunk, Microsoft Sentinel, Google Chronicle, Elastic Security, Datadog Cloud SIEM.
+
+**SOC (Security Operations Center)**
+
+- The human side: analysts watching SIEM output 24/7, tiered as L1 triage, L2 investigation, L3 threat hunting.
+- Consumes SIEM alerts and often drives SOAR (Security Orchestration, Automation and Response) playbooks for automated containment.
+- A SIEM without a SOC is a log archive; a SOC without a SIEM has no visibility. The two are deployed together.
