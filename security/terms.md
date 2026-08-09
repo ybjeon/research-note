@@ -10,6 +10,7 @@ Glossary of security terms that recur across the notes in this folder. Each entr
 | [Token](#token) | Access token vs refresh token, their lifetimes and handling |
 | [Ingress / Egress](#ingress--egress) | Inbound vs outbound traffic across a network boundary |
 | [DLP (Data Loss Prevention)](#dlp-data-loss-prevention) | Detecting and blocking sensitive data that crosses a boundary |
+| [Data Retention vs Data Residency](#data-retention-vs-data-residency) | How long data is kept vs where it is stored and processed |
 | [Unlinkability vs Non-targetability](#unlinkability-vs-non-targetability) | Blocking correlation vs preventing an individual from being singled out |
 | [SIEM vs SOC](#siem-vs-soc) | The log aggregation platform vs the team that operates it |
 
@@ -151,6 +152,40 @@ Where egress control asks *where* traffic is going, DLP asks *what* is inside it
 | Endpoint DLP | Device | Block USB copy, clipboard, printing, screenshots |
 | Cloud / SaaS DLP | SaaS applications | Block external sharing on Google Drive, inspect Slack uploads |
 | Storage DLP | Data stores | Scan S3 and file servers to find sensitive data left behind |
+
+## Data Retention vs Data Residency
+
+The two are usually quoted together in compliance requirements, but they answer different questions.
+
+| Term | Key Question |
+|------|--------------|
+| Data Retention (데이터 보존) | How **long** is the data kept? |
+| Data Residency (데이터 소재지) | **Where** is the data stored and processed? |
+
+### Data Retention
+
+Policy for how long data is held and when it is deleted. Two forces pull in opposite directions.
+
+- **Minimum retention (regulatory)**: law requires records to be kept, e.g. e-commerce transaction records for 5 years, financial records for a fixed term.
+- **Maximum retention (privacy)**: the GDPR storage limitation principle requires deletion once the purpose is served.
+
+| Concept | Description |
+|---------|-------------|
+| Retention schedule | Table defining the retention period per data type |
+| Legal hold (소송 보전) | Suspends the deletion policy while litigation or investigation is pending |
+| Zero Data Retention (ZDR) | Contractual option where nothing is persisted after the request is served |
+
+### Data Residency
+
+The geographic region where data physically lives and is processed. Three neighboring terms are distinct.
+
+| Term | Nature | Meaning |
+|------|--------|---------|
+| Data Residency (데이터 소재지) | Choice | Selecting the storage region by contract or configuration |
+| Data Sovereignty (데이터 주권) | Consequence | Data falls under the laws of the country where it resides |
+| Data Localization (데이터 현지화) | Mandate | Law forbids the data from leaving the country |
+
+The US CLOUD Act is the canonical sovereignty case: a US-operated provider may be compelled to hand over data even when it sits in an EU region, which is what drives sovereign cloud requirements in the EU. Choosing a region does not by itself resolve the sovereignty question.
 
 ## Unlinkability vs Non-targetability
 
