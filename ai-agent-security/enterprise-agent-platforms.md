@@ -10,19 +10,19 @@ The core question is:
 
 ### Main Points
 
-* User / Agent Identity
-* Permission Delegation
-* Least Privilege per Agent
-* Tool / MCP Control
-* Guardrails
-* Content Filtering
-* Prompt Injection Defense
-* DLP / Sensitive Data Detection
-* Network Isolation
-* Audit / Logging
-* Observability
-* Data Retention / Residency
-* SIEM / SOC Integration
+* User / Agent Identity (사용자 / Agent 신원)
+* Permission Delegation (권한 위임)
+* Least Privilege per Agent (Agent별 최소 권한 원칙)
+* Tool / MCP Control (Tool / MCP 제어)
+* Guardrails (가드레일)
+* Content Filtering (콘텐츠 필터링)
+* Prompt Injection Defense (프롬프트 인젝션 방어)
+* DLP / Sensitive Data Detection (민감 정보 유출 방지 / 탐지)
+* Network Isolation (네트워크 격리)
+* Audit / Logging (감사 / 로깅)
+* Observability (관측 가능성)
+* Data Retention / Residency (데이터 보존 / 저장 위치)
+* SIEM / SOC Integration (SIEM / SOC 연동)
 
 ---
 
