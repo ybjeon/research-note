@@ -9,6 +9,7 @@ Glossary of security terms that recur across the notes in this folder. Each entr
 | [Permission vs Access Control](#permission-vs-access-control) | A single granted right vs the system that defines and enforces rights |
 | [Token](#token) | Access token vs refresh token, their lifetimes and handling |
 | [Ingress / Egress](#ingress--egress) | Inbound vs outbound traffic across a network boundary |
+| [DLP (Data Loss Prevention)](#dlp-data-loss-prevention) | Detecting and blocking sensitive data that crosses a boundary |
 | [Unlinkability vs Non-targetability](#unlinkability-vs-non-targetability) | Blocking correlation vs preventing an individual from being singled out |
 | [SIEM vs SOC](#siem-vs-soc) | The log aggregation platform vs the team that operates it |
 
@@ -118,6 +119,38 @@ Traffic direction relative to a network boundary (host, container, VPC, data cen
 - Egress-only internet gateway (AWS) for private subnets that need outbound but must not be reachable inbound.
 - FQDN-based egress rules (rather than IP) to handle CDN / SaaS with dynamic IPs.
 - Alert on unexpected egress destinations as an anomaly detection signal.
+
+## DLP (Data Loss Prevention)
+
+Technology that detects sensitive data crossing an organizational boundary and blocks it. The standard expansion is **Data Loss Prevention (데이터 유출 방지)**, and "Data Leak Prevention" appears as a variant. Despite "loss" in the name, the concern is leakage outward rather than losing the data itself.
+
+Where egress control asks *where* traffic is going, DLP asks *what* is inside it. An allowed destination still gets blocked when the payload is sensitive, so the two controls complement each other.
+
+**Two stages**
+
+| Stage | Description |
+|-------|-------------|
+| Detect | Decide whether the data is sensitive |
+| Enforce | Block, mask, warn, or log according to policy |
+
+### Detection Techniques
+
+| Technique | Description |
+|-----------|-------------|
+| Pattern matching | Regex for resident registration numbers, card numbers, account numbers. Card numbers add a Luhn checksum test to cut false positives |
+| Keyword / dictionary | Terms such as `대외비`, `Confidential` |
+| Fingerprinting | Register a hash of the original document, then detect fragments of it leaving (Exact Data Match) |
+| Classification label | Read the sensitivity label attached to the document (Microsoft Purview sensitivity label model) |
+| ML / classifier | Categories patterns cannot catch, such as source code, medical records, financial data |
+
+### Deployment Points
+
+| Type | Location | Example |
+|------|----------|---------|
+| Network DLP | Network boundary | Inspect outbound HTTP/S traffic at the proxy |
+| Endpoint DLP | Device | Block USB copy, clipboard, printing, screenshots |
+| Cloud / SaaS DLP | SaaS applications | Block external sharing on Google Drive, inspect Slack uploads |
+| Storage DLP | Data stores | Scan S3 and file servers to find sensitive data left behind |
 
 ## Unlinkability vs Non-targetability
 
