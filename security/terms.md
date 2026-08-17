@@ -13,6 +13,8 @@ Glossary of security terms that recur across the notes in this folder. Each entr
 | [Data Retention vs Data Residency](#data-retention-vs-data-residency) | How long data is kept vs where it is stored and processed |
 | [Unlinkability vs Non-targetability](#unlinkability-vs-non-targetability) | Blocking correlation vs preventing an individual from being singled out |
 | [SIEM vs SOC](#siem-vs-soc) | The log aggregation platform vs the team that operates it |
+| [PoLP (Principle of Least Privilege)](#polp-principle-of-least-privilege) | Granting only the permissions a task needs, only where it needs them, only while it needs them |
+| [JIT (Just-In-Time Access)](#jit-just-in-time-access) | Granting a permission only at the moment it is needed, for a bounded window |
 
 ## Permission vs Access Control
 
@@ -242,3 +244,30 @@ Common products: Splunk, Microsoft Sentinel, Google Chronicle, Elastic Security,
 - The human side: analysts watching SIEM output 24/7, tiered as L1 triage, L2 investigation, L3 threat hunting.
 - Consumes SIEM alerts and often drives SOAR (Security Orchestration, Automation and Response) playbooks for automated containment.
 - A SIEM without a SOC is a log archive; a SOC without a SIEM has no visibility. The two are deployed together.
+
+## PoLP (Principle of Least Privilege)
+
+Grant a subject only the permissions its task requires, and no more. The expansion is **Principle of Least Privilege (최소 권한 원칙)**; "least privilege" alone is used just as often, and PoLP is the common abbreviation.
+
+**Three dimensions of "least"**
+
+| Dimension | Question | Example |
+|-----------|----------|---------|
+| Scope (권한 범위) | Which actions? | `read` only, not `write` or `delete` |
+| Target (대상) | On which resources? | One bucket prefix, not the whole account |
+| Duration (기간) | For how long? | A 15-minute session, not a standing role |
+
+**Why it holds**
+- Bounds the blast radius: a stolen credential or a misbehaving process reaches only what the subject was already allowed to reach.
+- Applies to every kind of subject alike: human accounts, service accounts, CI jobs, agents.
+- Makes an incident legible afterwards, since the permission set is the upper bound on what could have happened.
+
+**Privilege creep (권한 누적)**
+- Permissions accumulate through exceptions, one-off debugging grants, and role inheritance that nobody revisits. Narrowing the initial grant is easy; keeping it narrow is the hard part.
+- Countermeasures: a TTL on every grant, JIT elevation for the rare wide permission, and periodic access review to drop what is no longer used.
+
+> See also: [access-control.md](./access-control.md) for the models that implement it.
+
+## JIT (Just-In-Time Access)
+
+Grant a permission only at the moment it is needed, for a bounded window, then revoke it automatically. The expansion is **Just-In-Time Access (적시 권한 부여)**, and it is the Duration dimension of PoLP turned into a mechanism: least privilege narrows what a subject may do, JIT narrows how long it may do it. The target state is zero standing privilege, where no identity holds a privileged role while idle.
